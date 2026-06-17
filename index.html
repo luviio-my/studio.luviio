@@ -2,8 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luviio — Creative Design Studio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Luviio Studio</title>
+    <meta name="description" content="Luviio Studio helps startups and businesses design, build and scale digital products through modern web development, AI automation, custom systems, branding and user experience design.">
+    <meta name="keywords" content="Luviio Studio, product design studio, web development agency, AI automation agency, UI UX design, startup design partner, booking system development, ERP systems, custom software development, Malaysia design studio">
+    <meta name="author" content="Luviio Studio">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#051A24">
+    <link rel="canonical" href="https://luviio.com/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://images.luviio.com/luviio-crop-img.png">
+    <link rel="shortcut icon" href="https://images.luviio.com/luviio-crop-img.png">
+    <link rel="apple-touch-icon" href="https://images.luviio.com/luviio-crop-img.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Luviio Studio">
+    <meta property="og:title" content="Luviio Studio | Premium Product Design, Development & AI Automation Studio">
+    <meta property="og:description" content="Luviio Studio helps startups and businesses design, build and scale digital products through modern web development, AI automation, custom systems, branding and user experience design.">
+    <meta property="og:url" content="https://luviio.com/">
+    <meta property="og:image" content="https://images.luviio.com/luviio-crop-img.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Luviio Studio | Premium Product Design, Development & AI Automation Studio">
+    <meta name="twitter:description" content="Luviio Studio helps startups and businesses design, build and scale digital products through modern web development, AI automation, custom systems, branding and user experience design.">
+    <meta name="twitter:image" content="https://images.luviio.com/luviio-crop-img.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://studio.luviio.com/#organization",
+          "name": "Luviio Studio",
+          "url": "https://studio.luviio.com/",
+          "logo": "https://images.luviio.com/luviio-crop-img.png",
+          "founder": {
+            "@type": "Person",
+            "name": "Danial Danish"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kedah",
+            "addressCountry": "MY"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://.studio.luviio.com/#website",
+          "url": "https://studio.luviio.com/",
+          "name": "Luviio Studio",
+          "publisher": { "@id": "https://studio.luviio.com/#organization" },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://studio.luviio.com/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "ProfessionalService",
+          "name": "Luviio Studio",
+          "image": "https://images.luviio.com/luviio-crop-img.png",
+          "@id": "https://studio.luviio.com/#professional-service",
+          "url": "https://studio.luviio.com/",
+          "telephone": "",
+          "priceRange": "$$",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kedah",
+            "addressCountry": "MY"
+          },
+          "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "09:00",
+            "closes": "18:00"
+          }
+        }
+      ]
+    }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
@@ -36,6 +119,7 @@
             overflow-x: hidden;
             margin: 0;
             padding: 0;
+            -webkit-font-smoothing: antialiased;
         }
 
         .font-serif-custom {
@@ -62,6 +146,7 @@
             display: flex;
             width: max-content;
             animation: marquee 12s linear infinite;
+            will-change: transform;
         }
 
         @media (min-width: 768px) {
@@ -80,11 +165,12 @@
 
         .shadow-blue-btn { box-shadow: 0px 8px 20px rgba(37, 99, 235, 0.35); }
 
-        .carousel-track { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .carousel-track { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
         .cursor-crosshair { cursor: crosshair; }
 
         #bottom-nav {
             transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease;
+            margin-bottom: env(safe-area-inset-bottom, 0);
         }
         .nav-hidden {
             transform: translateX(-50%) translateY(200%) !important;
@@ -104,6 +190,7 @@
             opacity: 0;
             transform: scale(0.8);
             transition: opacity 300ms ease, transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, left, top;
         }
 
         .team-hover-img.active { opacity: 1; transform: scale(1); }
@@ -118,15 +205,47 @@
         .page-overlay.active { transform: translateY(0); }
         
         .time-slot-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-        .time-slot-btn.selected { background-color: #051A24; color: white; border-color: #051A24; }
+        .time-slot-btn.selected { background-color: #051A24; color: white; border-color: #051A24; transform: scale(0.98); }
         
-        .tz-select {
-            appearance: none; background: transparent; border: none; font-size: 14px; color: #475569;
-            cursor: pointer; outline: none; font-family: inherit;
+        .tz-select, .meeting-select {
+            appearance: none; 
+            background: transparent; 
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px; color: #475569;
+            cursor: pointer; outline: none; 
+            font-family: inherit;
+            padding: 12px 40px 12px 16px;
+            transition: all 200ms ease;
+            width: 100%;
         }
-        .meeting-select {
-            appearance: none; background: transparent; border: none; font-size: 14px; color: #475569;
-            cursor: pointer; outline: none; font-family: inherit;
+        .tz-select:hover, .meeting-select:hover { border-color: #cbd5e1; }
+        .tz-select:focus, .meeting-select:focus { border-color: #051A24; box-shadow: 0 0 0 3px rgba(5, 26, 36, 0.05); }
+
+        .select-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            width: 100%;
+        }
+        .select-wrapper svg {
+            position: absolute;
+            right: 14px;
+            pointer-events: none;
+            color: #94a3b8;
+        }
+
+        .cal-day-btn {
+            transition: all 200ms ease;
+        }
+        .cal-day-btn:hover:not(.disabled) {
+            background-color: #f1f5f9;
+            transform: scale(1.05);
+        }
+        .cal-day-btn.selected {
+            background-color: #051A24 !important;
+            color: white !important;
+            transform: scale(1.05);
         }
 
         @keyframes checkmark {
@@ -140,19 +259,45 @@
             pointer-events: none;
             border-radius: 16px;
             object-fit: cover;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
             opacity: 0;
             transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: 1;
             transform: scale(0.8);
+            will-change: transform, opacity;
         }
         .partner-trail.visible {
-            opacity: 0.85;
+            opacity: 0.9;
             transform: scale(1) rotate(0deg);
         }
         .partner-trail.fade-out {
             opacity: 0;
             transform: scale(0.6) rotate(5deg);
+        }
+
+        /* Auto Form Transition */
+        #booking-step-form {
+            transition: opacity 400ms ease, transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hidden-form {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .visible-form {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        input:focus, textarea:focus {
+            box-shadow: 0 0 0 3px rgba(5, 26, 36, 0.05);
+        }
+        
+        *:focus-visible {
+            outline: 2px solid #2563EB;
+            outline-offset: 2px;
+            border-radius: 4px;
         }
     </style>
 </head>
@@ -161,16 +306,16 @@
     <img id="team-hover-img" class="team-hover-img" src="" alt="Team Member">
 
     <!-- Terms Page Overlay -->
-    <div id="terms-overlay" class="page-overlay">
+    <div id="terms-overlay" class="page-overlay" role="dialog" aria-modal="true" aria-labelledby="terms-title">
         <div class="max-w-3xl mx-auto px-6 py-16 relative">
-            <button onclick="closeOverlay()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors cursor-pointer border-0 bg-transparent">
+            <button onclick="closeOverlay()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors cursor-pointer border-0 bg-transparent" aria-label="Close Terms">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
-            <h1 class="text-4xl font-serif-custom tracking-tight mb-8">Terms of Service</h1>
+            <h1 id="terms-title" class="text-4xl font-serif-custom tracking-tight mb-8">Terms of Service</h1>
             <div class="text-sm md:text-base text-slate-700 leading-relaxed space-y-6">
                 <p>Last updated: June 2025</p>
                 <h3 class="text-lg font-semibold text-slate-900">1. Agreement to Terms</h3>
-                <p>By accessing and using the services provided by Luviio Studio ("Luviio", "we", "us", or "our"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+                <p>By accessing and using the services provided by Luviio Studio ("Luviio", "we", "us", or "our"), you agree to be bound by these Terms of Service. If you do not agree with these terms, please do not use our services.</p>
                 <h3 class="text-lg font-semibold text-slate-900">2. Services</h3>
                 <p>Luviio provides creative design, web development, business systems, and automation solutions. All services are subject to the specific scope, timeline, and terms outlined in individual project proposals and agreements.</p>
                 <h3 class="text-lg font-semibold text-slate-900">3. Client Responsibilities</h3>
@@ -189,12 +334,12 @@
     </div>
 
     <!-- Privacy Policy Page Overlay -->
-    <div id="policy-overlay" class="page-overlay">
+    <div id="policy-overlay" class="page-overlay" role="dialog" aria-modal="true" aria-labelledby="policy-title">
         <div class="max-w-3xl mx-auto px-6 py-16 relative">
-            <button onclick="closeOverlay()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors cursor-pointer border-0 bg-transparent">
+            <button onclick="closeOverlay()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors cursor-pointer border-0 bg-transparent" aria-label="Close Privacy Policy">
                 <i data-lucide="x" class="w-5 h-5"></i>
             </button>
-            <h1 class="text-4xl font-serif-custom tracking-tight mb-8">Privacy Policy</h1>
+            <h1 id="policy-title" class="text-4xl font-serif-custom tracking-tight mb-8">Privacy Policy</h1>
             <div class="text-sm md:text-base text-slate-700 leading-relaxed space-y-6">
                 <p>Last updated: June 2025</p>
                 <h3 class="text-lg font-semibold text-slate-900">1. Information We Collect</h3>
@@ -213,355 +358,376 @@
         </div>
     </div>
 
-    <section class="max-w-[440px] mx-auto px-6 pt-12 md:pt-16 text-center flex flex-col items-center select-none" data-observe>
-        <h1 class="font-serif-custom font-semibold text-[32px] md:text-[40px] lg:text-[44px] text-[#051A24] tracking-tight mb-2 reveal-element" style="animation-delay: 0.1s;">
-            Luviio Studio
-        </h1>
-        <p class="font-mono text-xs md:text-sm text-[#051A24] mb-2 reveal-element" style="animation-delay: 0.2s;">
-            Founded by Danial Danish
-        </p>
-        <h2 class="text-[28px] md:text-[36px] lg:text-[40px] leading-[1.1] text-[#0D212C] tracking-tight reveal-element" style="animation-delay: 0.3s;">
-            Technology crafted for <span class="font-serif-custom italic">growing businesses.</span>
-        </h2>
-        
-        <div class="flex flex-col gap-4 text-sm md:text-base text-[#051A24] leading-relaxed text-left mt-5 md:mt-6 reveal-element" style="animation-delay: 0.4s;">
-            <p>I founded Luviio Studio to help ambitious businesses build a stronger digital foundation. Through modern websites, custom business systems, and intelligent automation, we create solutions that simplify operations, improve customer experiences, and support long-term growth.</p>
-            <p>Every engagement begins with understanding the business behind the project. Whether it’s a corporate website, ERP platform, booking system, membership portal, or AI-powered workflow, every solution is designed with purpose and built to perform.</p>
-            <p>The studio remains deliberately focused, allowing every client to receive direct attention, faster execution, and dependable long-term support.</p>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 mt-5 md:mt-6 w-full sm:w-auto justify-center reveal-element" style="animation-delay: 0.5s;">
-            <button onclick="scrollToBooking()" class="bg-[#051A24] text-white rounded-full px-7 py-3 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-primary cursor-pointer text-sm md:text-base">
-                Start a chat
-            </button>
-            <button onclick="document.getElementById('projects-section').scrollIntoView({behavior: 'smooth'})" class="bg-white text-[#051A24] rounded-full px-7 py-3 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-secondary cursor-pointer text-sm md:text-base">
-                View projects
-            </button>
-        </div>
-    </section>
-
-    <section class="w-full overflow-hidden mt-16 md:mt-20 mb-16 marquee-container relative">
-        <div class="marquee-track">
-            <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            
-            <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-            <img src="https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
-        </div>
-    </section>
-
-    <section class="py-12 px-6 max-w-5xl mx-auto flex flex-col md:flex-row gap-12 md:gap-20 items-center" id="parallax-section" data-observe>
-        <div class="flex-1 flex flex-col items-start text-left">
-            <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight mb-4 reveal-element" style="animation-delay: 0.1s;">
-                Founded by <span class="font-serif-custom italic">Danial Danish</span>
+    <header>
+        <section class="max-w-[440px] mx-auto px-6 pt-12 md:pt-16 text-center flex flex-col items-center select-none" data-observe>
+            <h1 class="font-serif-custom font-semibold text-[32px] md:text-[40px] lg:text-[44px] text-[#051A24] tracking-tight mb-2 reveal-element" style="animation-delay: 0.1s;">
+                Luviio Studio
+            </h1>
+            <p class="font-mono text-xs md:text-sm text-[#051A24] mb-2 reveal-element" style="animation-delay: 0.2s;">
+                Founded by Danial Danish
+            </p>
+            <h2 class="text-[28px] md:text-[36px] lg:text-[40px] leading-[1.1] text-[#0D212C] tracking-tight reveal-element" style="animation-delay: 0.3s;">
+                Technology crafted for <span class="font-serif-custom italic">growing businesses.</span>
             </h2>
-<div class="flex items-center gap-6 mb-6 text-slate-900 font-medium reveal-element" style="animation-delay: 0.2s;">
-    <span class="text-[20px] tracking-tight">UI/UX</span>
-    <span class="text-[20px] tracking-tight">Web Development</span>
-    <span class="text-[20px] tracking-tight">AI Automation</span>
-</div>
-            <p class="text-sm md:text-base text-[#051A24]/80 leading-relaxed mb-4 reveal-element" style="animation-delay: 0.3s;">
-                Danial founded Luviio Studio with a passion for creating digital experiences that are both beautiful and effective. Combining design thinking with technical expertise, he helps businesses transform ideas into websites, products, and brands that connect with people and drive growth.            
-            </p>
+            
+            <div class="flex flex-col gap-4 text-sm md:text-base text-[#051A24] leading-relaxed text-left mt-5 md:mt-6 reveal-element" style="animation-delay: 0.4s;">
+                <p>I founded Luviio Studio to help ambitious businesses build a stronger digital foundation. Through modern websites, custom business systems, and intelligent automation, we create solutions that simplify operations, improve customer experiences, and support long-term growth.</p>
+                <p>Every engagement begins with understanding the business behind the project. Whether it’s a corporate website, ERP platform, booking system, membership portal, or AI-powered workflow, every solution is designed with purpose and built to perform.</p>
+                <p>The studio remains deliberately focused, allowing every client to receive direct attention, faster execution, and dependable long-term support.</p>
+            </div>
 
-            <p class="text-sm md:text-base text-[#051A24]/80 leading-relaxed reveal-element" style="animation-delay: 0.4s;">
-                Working closely with founders and growing companies, he oversees every stage of the creative process—from strategy and user experience to visual design and launch. The result is thoughtful, refined products designed to stand out in competitive markets.
-            </p>
-          </div>
-        
-        <div class="flex-shrink-0 w-full max-w-xs rounded-2xl overflow-hidden shadow-lg h-[460px] relative reveal-element" style="animation-delay: 0.5s;">
-            <img id="parallax-img" src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial Danish" class="w-full h-[140%] object-cover absolute left-0 top-[-20%] transition-transform duration-75 ease-out">
-        </div>
-    </section>
-
-    <section class="py-12 px-6 max-w-5xl mx-auto border-t border-slate-100" id="team-section" data-observe>
-        <div class="flex flex-col md:flex-row gap-12 md:gap-20">
-            <div class="flex-shrink-0 w-full md:w-1/4 reveal-element" style="animation-delay: 0.1s;">
-                <h2 class="text-[32px] md:text-[40px] font-serif-custom leading-[1.1] text-[#0D212C] tracking-tight">Team</h2>
-            </div>
-            <div class="flex-1 grid grid-cols-2 gap-x-12 gap-y-6 text-sm md:text-base reveal-element" style="animation-delay: 0.2s;">
-                <div class="flex flex-col gap-6">
-                    <div class="team-name-hover" data-img="https://images.luviio.com/danialdanish-luviio-founder.JPEG">Danial Danish</div>
-                    <div class="team-name-hover" data-img="https://images.luviio.com/nurulnabila-web.jpeg?auto=compress&cs=tinysrgb&w=400">Nurul Nabila</div>
-                    <div class="team-name-hover" data-img="https://images.luviio.com/putri-web.jpeg?auto=compress&cs=tinysrgb&w=400">Putri Erinna</div>
-                </div>
-                <div class="flex flex-col gap-6 text-[#051A24]/60">
-                    <div>Founder, Head of AI Vision & Strategy</div>
-                    <div>AI Research Manager</div>
-                    <div>Director of Marketing</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="pricing-section" class="w-full py-12 px-6 bg-white mt-12" data-observe>
-        <div class="max-w-7xl mx-auto flex flex-col md:items-end">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:max-w-4xl">
-                <div class="bg-[#051A24] rounded-[40px] pl-10 pr-10 md:pr-24 pt-10 pb-10 flex flex-col justify-between shadow-inner reveal-element" style="animation-delay: 0.1s;">
-                    <div>
-                        <h3 class="text-[22px] font-medium text-[#F6FCFF] mb-4">Monthly Partnership</h3>
-                        <p class="text-[#E0EBF0] text-sm md:text-base leading-relaxed mb-8">A dedicated creative design team. <br> You work directly with Danial.</p>
-                    </div>
-                    <div>
-                        <div class="mb-6">
-                            <span class="text-2xl font-semibold text-[#F6FCFF]">RM 300</span>
-                            <span class="block text-xs uppercase tracking-wider text-[#E0EBF0]/60 mt-1">Monthly</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-                            <button onclick="scrollToBooking()" class="bg-white text-[#051A24] rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">Start a chat</button>
-                            <button onclick="scrollToBooking()" class="text-sm font-medium text-[#E0EBF0] hover:text-white bg-transparent border-0 cursor-pointer transition-colors">How it works</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-white border border-slate-100 rounded-[40px] pl-10 pr-10 md:pr-24 pt-10 pb-10 flex flex-col justify-between shadow-[0_4px_16px_rgba(0,0,0,0.08)] reveal-element" style="animation-delay: 0.2s;">
-                    <div>
-                        <h3 class="text-[22px] font-medium text-[#0D212C] mb-4">Custom Project</h3>
-                        <p class="text-[#051A24]/70 text-sm md:text-base leading-relaxed mb-8">Fixed scope, fixed timeline. <br> Same team, same standards.</p>
-                    </div>
-                    <div>
-                        <div class="mb-6">
-                            <span class="text-2xl font-semibold text-[#0D212C]">RM 500</span>
-                            <span class="block text-xs uppercase tracking-wider text-[#051A24]/50 mt-1">Minimum</span>
-                        </div>
-                        <button onclick="scrollToBooking()" class="bg-white text-[#051A24] border-0 rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">Start a chat</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="w-full py-20 bg-white overflow-hidden relative">
-        <div class="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
-            <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight max-w-lg">What <span class="font-serif-custom italic">builders</span> say</h2>
-            <div class="flex items-center gap-6">
-                <div class="flex items-center gap-2">
-                    <div class="flex text-black" id="stars-container"></div>
-                    <span class="text-sm font-medium text-slate-950 tracking-tight">Clutch 5/5</span>
-                </div>
-                <div class="flex gap-2">
-                    <button onclick="prevSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                    <button onclick="nextSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
-                </div>
-            </div>
-        </div>
-        <div class="w-full px-6 overflow-hidden" id="carousel-viewport">
-            <div class="flex gap-6 carousel-track" id="carousel-track"></div>
-        </div>
-    </section>
-
-    <section id="projects-section" class="max-w-[1200px] mx-auto px-6 py-12 flex flex-col gap-16 md:gap-20 bg-white">
-        <article class="w-full flex flex-col gap-6" data-observe>
-            <div class="ml-20 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
-                <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">Kretworks</h3>
-                <p class="text-sm md:text-base text-[#051A24]/70 tracking-tight">From idea to millions raised for a web3 AI product</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden shadow-lg h-[320px] md:h-[600px] reveal-element" style="animation-delay: 0.2s;">
-                <img src="https://images.luviio.com/kretworks.gif" alt="Kretworks project preview" class="w-full h-full object-cover">
-            </div>
-        </article>
-        <article class="w-full flex flex-col gap-6" data-observe>
-            <div class="ml-20 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
-                <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">Automation Machines</h3>
-                <p class="text-sm md:text-base text-[#051A24]/70 tracking-tight">Streamlining industrial automation processes</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden shadow-lg h-[320px] md:h-[600px] reveal-element" style="animation-delay: 0.2s;">
-                <img src="https://motionsites.ai/assets/hero-automation-machines-preview-DlTveRIN.gif" alt="Automation Machines preview" class="w-full h-full object-cover">
-            </div>
-        </article>
-        <article class="w-full flex flex-col gap-6" data-observe>
-            <div class="ml-20 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
-                <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">xPortfolio</h3>
-                <p class="text-sm md:text-base text-[#051A24]/70 tracking-tight">Modern portfolio management platform</p>
-            </div>
-            <div class="w-full rounded-2xl overflow-hidden shadow-lg h-[320px] md:h-[600px] reveal-element" style="animation-delay: 0.2s;">
-                <img src="https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif" alt="xPortfolio preview" class="w-full h-full object-cover">
-            </div>
-        </article>
-    </section>
-
-    <!-- Partner Section -->
-    <section class="w-full py-12 px-6 bg-white" id="partner-section" data-observe>
-        <div id="interactive-partner-container" class="max-w-7xl mx-auto py-48 rounded-[40px] bg-white border border-slate-100 shadow-sm relative overflow-hidden flex flex-col items-center justify-center text-center cursor-crosshair reveal-element" style="animation-delay: 0.1s;">
-            <div class="relative z-10 flex flex-col items-center select-none">
-                <h2 class="text-[48px] md:text-[64px] lg:text-[80px] font-serif-custom leading-none text-[#0D212C] mb-12 tracking-tight">Partner with us</h2>
-                <button onclick="scrollToBooking()" class="bg-[#051A24] text-white rounded-full pl-3 pr-7 py-2.5 font-medium flex items-center gap-3 shadow-btn-primary hover:scale-[1.01] transition-transform duration-200 cursor-pointer text-sm md:text-base relative z-50">
-                    <img src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
-                    <span>Start chat with Danial</span>
+            <div class="flex flex-col sm:flex-row gap-3 md:gap-4 mt-5 md:mt-6 w-full sm:w-auto justify-center reveal-element" style="animation-delay: 0.5s;">
+                <button onclick="scrollToBooking()" class="bg-[#051A24] text-white rounded-full px-7 py-3 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-primary cursor-pointer text-sm md:text-base">
+                    Start a chat
+                </button>
+                <button onclick="document.getElementById('projects-section').scrollIntoView({behavior: 'smooth'})" class="bg-white text-[#051A24] rounded-full px-7 py-3 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-secondary cursor-pointer text-sm md:text-base">
+                    View projects
                 </button>
             </div>
-        </div>
-    </section>
+        </section>
+    </header>
 
-    <!-- Native Booking Section -->
-    <section id="native-booking-section" class="max-w-6xl mx-auto px-6 py-16 bg-white border border-slate-100 rounded-[32px] my-12 shadow-sm transition-all duration-500">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            
-            <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-slate-100 pb-6 lg:pb-0 lg:pr-8">
-                <div class="flex items-center gap-3 mb-4">
-                    <img src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial Danish" class="w-10 h-10 rounded-full object-cover">
-                    <div>
-                        <h4 class="font-medium text-sm text-slate-800">Danial Danish</h4>
-                        <p class="text-xs text-slate-400">Design Partner</p>
-                    </div>
-                </div>
-                <h3 class="text-2xl font-semibold tracking-tight text-[#0D212C] mb-2">Intro with Danial</h3>
-                <p class="text-sm text-slate-500 leading-relaxed mb-6">
-                    Let's discuss how we can help you. Choose your preferred meeting type, duration, and timezone. After selecting a time slot, you'll receive a calendar invite with all the details.
-                </p>
+    <main>
+        <section class="w-full overflow-hidden mt-16 md:mt-20 mb-16 marquee-container relative" aria-label="Showcase Marquee">
+            <div class="marquee-track">
+                <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
                 
-                <div class="flex flex-col gap-3 text-sm text-slate-600">
-                    <div class="flex items-center gap-3">
-                        <i data-lucide="clock" class="w-4 h-4 text-slate-400"></i>
-                        <span>30m</span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <i data-lucide="video" class="w-4 h-4 text-slate-400"></i>
-                        <select id="meeting-type-select" class="meeting-select">
-                            <option value="Google Meet">Google Meet</option>
-                            <option value="Whatsapp">Whatsapp</option>
-                            <option value="Facetime Audio">Facetime Audio</option>
-                        </select>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <i data-lucide="globe" class="w-4 h-4 text-slate-400"></i>
-                        <select id="timezone-select" class="tz-select">
-                            <option value="Asia/Kuala_Lumpur">Asia/Kuala Lumpur</option>
-                            <option value="Asia/Singapore">Asia/Singapore</option>
-                            <option value="Asia/Tokyo">Asia/Tokyo</option>
-                            <option value="Asia/Hong_Kong">Asia/Hong_Kong</option>
-                            <option value="Asia/Dubai">Asia/Dubai</option>
-                            <option value="Europe/London">Europe/London</option>
-                            <option value="Europe/Berlin">Europe/Berlin</option>
-                            <option value="America/New_York">America/New_York</option>
-                            <option value="America/Chicago">America/Chicago</option>
-                            <option value="America/Denver">America/Denver</option>
-                            <option value="America/Los_Angeles">America/Los_Angeles</option>
-                            <option value="Australia/Sydney">Australia/Sydney</option>
-                            <option value="Pacific/Auckland">Pacific/Auckland</option>
-                        </select>
-                    </div>
-                </div>
+                <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+                <img src="https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack" loading="lazy">
+            </div>
+        </section>
 
-                <div id="booking-datetime-summary" class="hidden mt-6 pt-6 border-t border-slate-100">
-                    <div class="flex items-center gap-3 text-sm text-slate-700 font-medium bg-slate-50 p-3 rounded-xl">
-                        <i data-lucide="calendar" class="w-4 h-4 text-blue-600"></i>
-                        <div>
-                            <p id="summary-date"></p>
-                            <p id="summary-time" class="text-xs text-slate-500 font-normal"></p>
-                        </div>
+        <section class="py-12 px-6 max-w-5xl mx-auto flex flex-col md:flex-row gap-12 md:gap-20 items-center" id="parallax-section" data-observe>
+            <div class="flex-1 flex flex-col items-start text-left">
+                <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight mb-4 reveal-element" style="animation-delay: 0.1s;">
+                    Founded by <span class="font-serif-custom italic">Danial Danish</span>
+                </h2>
+                <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mb-6 text-slate-900 font-medium reveal-element" style="animation-delay: 0.2s;">
+                    <span class="text-[20px] tracking-tight">UI/UX</span>
+                    <span class="text-[20px] tracking-tight">Web Development</span>
+                    <span class="text-[20px] tracking-tight">AI Automation</span>
+                </div>
+                <p class="text-sm md:text-base text-[#051A24]/80 leading-relaxed mb-4 reveal-element" style="animation-delay: 0.3s;">
+                    Danial founded Luviio Studio with a passion for creating digital experiences that are both beautiful and effective. Combining design thinking with technical expertise, he helps businesses transform ideas into websites, products, and brands that connect with people and drive growth.            
+                </p>
+
+                <p class="text-sm md:text-base text-[#051A24]/80 leading-relaxed reveal-element" style="animation-delay: 0.4s;">
+                    Working closely with founders and growing companies, he oversees every stage of the creative process—from strategy and user experience to visual design and launch. The result is thoughtful, refined products designed to stand out in competitive markets.
+                </p>
+            </div>
+            
+            <div class="flex-shrink-0 w-full max-w-xs rounded-2xl overflow-hidden shadow-lg h-[460px] relative reveal-element" style="animation-delay: 0.5s;">
+                <img id="parallax-img" src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial Danish - Founder" class="w-full h-[140%] object-cover absolute left-0 top-[-20%] transition-transform duration-75 ease-out will-change-transform">
+            </div>
+        </section>
+
+        <section class="py-12 px-6 max-w-5xl mx-auto border-t border-slate-100" id="team-section" data-observe>
+            <div class="flex flex-col md:flex-row gap-12 md:gap-20">
+                <div class="flex-shrink-0 w-full md:w-1/4 reveal-element" style="animation-delay: 0.1s;">
+                    <h2 class="text-[32px] md:text-[40px] font-serif-custom leading-[1.1] text-[#0D212C] tracking-tight">Team</h2>
+                </div>
+                <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-4 text-sm md:text-base reveal-element" style="animation-delay: 0.2s;">
+                    <div class="flex flex-col gap-6">
+                        <div class="team-name-hover" data-img="https://images.luviio.com/danialdanish-luviio-founder.JPEG">Danial Danish</div>
+                        <div class="team-name-hover" data-img="https://images.luviio.com/nurulnabila-web.jpeg?auto=compress&cs=tinysrgb&w=400">Nurul Nabila</div>
+                        <div class="team-name-hover" data-img="https://images.luviio.com/putri-web.jpeg?auto=compress&cs=tinysrgb&w=400">Putri Erinna</div>
+                    </div>
+                    <div class="flex flex-col gap-6 text-[#051A24]/60">
+                        <div>Founder, Head of AI Vision & Strategy</div>
+                        <div>AI Research Manager</div>
+                        <div>Director of Marketing</div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="lg:col-span-8">
-                
-                <!-- Step 1: Date & Time Selection -->
-                <div id="booking-step-slots" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    
-                    <div>
-                        <div class="flex items-center justify-between mb-6">
-                            <span id="calendar-month-label" class="font-medium text-base text-slate-900"></span>
-                            <div class="flex gap-2">
-                                <button onclick="changeMonth(-1)" class="p-1 hover:bg-slate-50 rounded-md text-slate-400 cursor-pointer"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
-                                <button onclick="changeMonth(1)" class="p-1 hover:bg-slate-50 rounded-md text-slate-400 cursor-pointer"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+        <section id="pricing-section" class="w-full py-12 px-6 bg-white mt-12" data-observe>
+            <div class="max-w-7xl mx-auto flex flex-col md:items-end">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:max-w-4xl">
+                    <div class="bg-[#051A24] rounded-[32px] md:rounded-[40px] pl-8 pr-8 md:pl-10 md:pr-24 pt-10 pb-10 flex flex-col justify-between shadow-inner reveal-element" style="animation-delay: 0.1s;">
+                        <div>
+                            <h3 class="text-[22px] font-medium text-[#F6FCFF] mb-4">Monthly Partnership</h3>
+                            <p class="text-[#E0EBF0] text-sm md:text-base leading-relaxed mb-8">A dedicated creative design team. <br> You work directly with Danial.</p>
+                        </div>
+                        <div>
+                            <div class="mb-6">
+                                <span class="text-2xl font-semibold text-[#F6FCFF]">RM 300</span>
+                                <span class="block text-xs uppercase tracking-wider text-[#E0EBF0]/60 mt-1">Monthly</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                                <button onclick="scrollToBooking()" class="bg-white text-[#051A24] rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">Start a chat</button>
+                                <button onclick="scrollToBooking()" class="text-sm font-medium text-[#E0EBF0] hover:text-white bg-transparent border-0 cursor-pointer transition-colors">How it works</button>
                             </div>
                         </div>
-                        
-                        <div class="grid grid-cols-7 gap-y-3 text-center text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
-                            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
-                        </div>
-                        
-                        <div id="calendar-grid" class="grid grid-cols-7 gap-y-2 text-sm text-center font-medium"></div>
                     </div>
-                    
-                    <div class="flex flex-col">
-                        <div class="flex items-center justify-between mb-4">
-                            <span id="target-day-label" class="font-medium text-slate-900"></span>
+                    <div class="bg-white border border-slate-100 rounded-[32px] md:rounded-[40px] pl-8 pr-8 md:pl-10 md:pr-24 pt-10 pb-10 flex flex-col justify-between shadow-[0_4px_16px_rgba(0,0,0,0.08)] reveal-element" style="animation-delay: 0.2s;">
+                        <div>
+                            <h3 class="text-[22px] font-medium text-[#0D212C] mb-4">Custom Project</h3>
+                            <p class="text-[#051A24]/70 text-sm md:text-base leading-relaxed mb-8">Fixed scope, fixed timeline. <br> Same team, same standards.</p>
                         </div>
-                        <div id="time-slots-container" class="flex flex-col gap-2 max-h-[280px] overflow-y-auto pr-1"></div>
-                        <p id="no-slots-msg" class="text-sm text-slate-400 text-center py-8 hidden">Select a date to view available times</p>
+                        <div>
+                            <div class="mb-6">
+                                <span class="text-2xl font-semibold text-[#0D212C]">RM 500</span>
+                                <span class="block text-xs uppercase tracking-wider text-[#051A24]/50 mt-1">Minimum</span>
+                            </div>
+                            <button onclick="scrollToBooking()" class="bg-white text-[#051A24] border-0 rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">Start a chat</button>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Step 2: Details Form -->
-                <div id="booking-step-form" class="hidden flex flex-col gap-5">
-                    
-                    <div id="form-summary-bar" class="bg-slate-50 p-4 rounded-xl mb-2 flex items-center justify-between">
-                        <div class="flex items-center gap-3 text-sm text-slate-700">
-                            <i data-lucide="calendar" class="w-4 h-4 text-blue-600"></i>
-                            <span id="form-summary-text" class="font-medium"></span>
-                        </div>
-                        <button onclick="showStepSlots()" class="text-xs font-medium text-blue-600 hover:text-blue-800 cursor-pointer bg-transparent border-0">Change</button>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">Your name *</label>
-                        <input id="booking-name" type="text" placeholder="John Doe" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-colors bg-white text-sm text-slate-800">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">Email address *</label>
-                        <input id="booking-email" type="email" placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-colors bg-white text-sm text-slate-800">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">Business name *</label>
-                        <input id="booking-business" type="text" placeholder="e.g. Anthropic" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-colors bg-white text-sm text-slate-800">
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-1">What can we help with? *</label>
-                        <textarea id="booking-help" rows="3" placeholder="e.g. Agentic crypto platform" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-colors bg-white text-sm text-slate-800 resize-none"></textarea>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-3">How did you hear about us? *</label>
-                        <div class="flex flex-col gap-2.5 text-sm text-slate-700 font-medium">
-                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="source" value="referral" class="w-4 h-4 accent-slate-900"> Referral</label>
-                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="source" value="twitter" class="w-4 h-4 accent-slate-900"> X / Twitter</label>
-                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="source" value="linkedin" class="w-4 h-4 accent-slate-900"> LinkedIn</label>
-                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="source" value="ai" class="w-4 h-4 accent-slate-900"> AI</label>
-                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="source" value="other" class="w-4 h-4 accent-slate-900"> Other</label>
-                        </div>
-                    </div>
-
-                    <p class="text-xs text-slate-400 mt-2">
-                        By proceeding, you agree to luviio.com's <a href="#/terms" onclick="event.preventDefault(); navigateTo('terms')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Terms</a> and <a href="#/policy" onclick="event.preventDefault(); navigateTo('policy')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Privacy Policy</a>.
-                    </p>
-
-                    <div class="flex items-center justify-end gap-4 mt-4 pt-4 border-t border-slate-100">
-                        <button onclick="showStepSlots()" class="px-5 py-2.5 text-sm font-medium text-slate-500 hover:text-slate-800 cursor-pointer bg-transparent border-0 transition-colors">Back</button>
-                        <button id="submit-booking-btn" onclick="submitBooking()" class="px-6 py-2.5 text-sm font-medium bg-[#051A24] text-white rounded-xl shadow-md hover:bg-slate-800 transition-colors cursor-pointer">Confirm Booking</button>
-                    </div>
-                </div>
-
-                <!-- Step 3: Success State -->
-                <div id="booking-step-success" class="hidden flex flex-col items-center justify-center py-16 text-center">
-                    <div class="w-20 h-20 rounded-full bg-emerald-50 flex items-center justify-center mb-6">
-                        <svg class="w-10 h-10 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="20 6 9 17 4 12" class="check-animated"></polyline>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-semibold tracking-tight text-[#0D212C] mb-2">Booking Confirmed!</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed max-w-sm mb-6" id="success-details"></p>
-                    <button onclick="resetBooking()" class="px-6 py-2.5 text-sm font-medium bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-200 transition-colors cursor-pointer border-0">Book another slot</button>
-                </div>
-
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="w-full py-20 bg-white overflow-hidden relative" aria-label="Testimonials">
+            <div class="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+                <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight max-w-lg">What <span class="font-serif-custom italic">builders</span> say</h2>
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-2">
+                        <div class="flex text-black" id="stars-container" aria-label="5 out of 5 stars"></div>
+                        <span class="text-sm font-medium text-slate-950 tracking-tight">Clutch 5/5</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="prevSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer" aria-label="Previous Slide"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                        <button onclick="nextSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer" aria-label="Next Slide"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full px-6 overflow-hidden" id="carousel-viewport">
+                <div class="flex gap-6 carousel-track" id="carousel-track" role="list"></div>
+            </div>
+        </section>
+
+        <section id="projects-section" class="max-w-[1200px] mx-auto px-6 py-12 flex flex-col gap-16 md:gap-20 bg-white">
+            <article class="w-full flex flex-col gap-6" data-observe>
+                <div class="ml-4 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
+                    <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">Kretworks</h3>
+                    <p class="text-sm md:text-base text-[#051A24]/70 tracking-tight">From idea to millions raised for a web3 AI product</p>
+                </div>
+                <div class="w-full rounded-2xl overflow-hidden shadow-lg h-[280px] md:h-[600px] reveal-element" style="animation-delay: 0.2s;">
+                    <img src="https://images.luviio.com/kretworks.gif" alt="Kretworks project preview" class="w-full h-full object-cover" loading="lazy">
+                </div>
+            </article>
+            <article class="w-full flex flex-col gap-6" data-observe>
+                <div class="ml-4 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
+                    <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">Automation Machines</h3>
+                    <p class="text-sm md:text-base text-[#051A24]/70 tracking-tight">Streamlining industrial automation processes</p>
+                </div>
+                <div class="w-full rounded-2xl overflow-hidden shadow-lg h-[280px] md:h-[600px] reveal-element" style="animation-delay: 0.2s;">
+                    <img src="https://motionsites.ai/assets/hero-automation-machines-preview-DlTveRIN.gif" alt="Automation Machines preview" class="w-full h-full object-cover" loading="lazy">
+                </div>
+            </article>
+            <article class="w-full flex flex-col gap-6" data-observe>
+                <div class="ml-4 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
+                    <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">xPortfolio</h3>
+                    <p class="text-sm md:text-base text-[#051A24]/70 tracking-tight">Modern portfolio management platform</p>
+                </div>
+                <div class="w-full rounded-2xl overflow-hidden shadow-lg h-[280px] md:h-[600px] reveal-element" style="animation-delay: 0.2s;">
+                    <img src="https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif" alt="xPortfolio preview" class="w-full h-full object-cover" loading="lazy">
+                </div>
+            </article>
+        </section>
+
+        <!-- Partner Section -->
+        <section class="w-full py-12 px-6 bg-white" id="partner-section" data-observe>
+            <div id="interactive-partner-container" class="max-w-7xl mx-auto py-32 md:py-48 rounded-[32px] md:rounded-[40px] bg-white border border-slate-100 shadow-sm relative overflow-hidden flex flex-col items-center justify-center text-center cursor-crosshair reveal-element" style="animation-delay: 0.1s;">
+                
+                <div id="partner-canvas" class="absolute inset-0 w-full h-full pointer-events-none" aria-hidden="true"></div>
+
+                <div class="relative z-10 flex flex-col items-center select-none">
+                    <h2 id="partner-heading" class="text-[40px] md:text-[64px] lg:text-[80px] font-serif-custom leading-none text-[#0D212C] mb-10 md:mb-12 tracking-tight transition-transform duration-300 will-change-transform">Partner with us</h2>
+                    <button id="partner-cta" onclick="scrollToBooking()" class="bg-[#051A24] text-white rounded-full pl-3 pr-7 py-2.5 font-medium flex items-center gap-3 shadow-btn-primary hover:scale-[1.02] transition-transform duration-200 cursor-pointer text-sm md:text-base relative z-50">
+                        <img src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+                        <span>Start chat with Danial</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Native Booking Section -->
+        <section id="native-booking-section" class="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-16 bg-white border border-slate-100 rounded-[24px] md:rounded-[32px] my-8 md:my-12 shadow-sm transition-all duration-500" aria-label="Booking Section">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-slate-100 pb-8 lg:pb-0 lg:pr-8">
+                    <div class="flex items-center gap-3 mb-4">
+                        <img src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial Danish" class="w-10 h-10 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-medium text-sm text-slate-800">Danial Danish</h4>
+                            <p class="text-xs text-slate-400">Design Partner</p>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-semibold tracking-tight text-[#0D212C] mb-2">Intro with Danial</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                        Let's discuss how we can help you. Choose your preferred meeting type, duration, and timezone. After selecting a time slot, you'll receive a calendar invite with all the details.
+                    </p>
+                    
+                    <div class="flex flex-col gap-3 text-sm text-slate-600">
+                        
+                        <div class="flex items-center gap-3 p-2 border border-slate-100 rounded-xl bg-slate-50/50">
+                            <i data-lucide="clock" class="w-4 h-4 text-slate-500 ml-2 flex-shrink-0"></i>
+                            <div class="select-wrapper flex-1">
+                                <select id="duration-select" class="appearance-none bg-transparent border-none w-full text-slate-700 font-medium cursor-pointer focus:outline-none py-2">
+                                    <option value="30">30 Minutes</option>
+                                </select>
+                                <i data-lucide="chevron-down" class="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400"></i>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-2 border border-slate-100 rounded-xl bg-slate-50/50">
+                            <i data-lucide="video" class="w-4 h-4 text-slate-500 ml-2 flex-shrink-0"></i>
+                            <div class="select-wrapper flex-1">
+                                <select id="meeting-type-select" class="appearance-none bg-transparent border-none w-full text-slate-700 font-medium cursor-pointer focus:outline-none py-2">
+                                    <option value="Google Meet">Google Meet</option>
+                                    <option value="Whatsapp">Whatsapp</option>
+                                    <option value="Facetime Audio">Facetime Audio</option>
+                                </select>
+                                <i data-lucide="chevron-down" class="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400"></i>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-2 border border-slate-100 rounded-xl bg-slate-50/50">
+                            <i data-lucide="globe" class="w-4 h-4 text-slate-500 ml-2 flex-shrink-0"></i>
+                            <div class="select-wrapper flex-1">
+                                <select id="timezone-select" class="appearance-none bg-transparent border-none w-full text-slate-700 font-medium cursor-pointer focus:outline-none py-2">
+                                    <option value="Asia/Kuala_Lumpur">Asia/Kuala Lumpur</option>
+                                    <option value="Asia/Singapore">Asia/Singapore</option>
+                                    <option value="Asia/Tokyo">Asia/Tokyo</option>
+                                    <option value="Asia/Hong_Kong">Asia/Hong_Kong</option>
+                                    <option value="Asia/Dubai">Asia/Dubai</option>
+                                    <option value="Europe/London">Europe/London</option>
+                                    <option value="Europe/Berlin">Europe/Berlin</option>
+                                    <option value="America/New_York">America/New_York</option>
+                                    <option value="America/Chicago">America/Chicago</option>
+                                    <option value="America/Denver">America/Denver</option>
+                                    <option value="America/Los_Angeles">America/Los_Angeles</option>
+                                    <option value="Australia/Sydney">Australia/Sydney</option>
+                                    <option value="Pacific/Auckland">Pacific/Auckland</option>
+                                </select>
+                                <i data-lucide="chevron-down" class="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="booking-datetime-summary" class="hidden mt-6 pt-6 border-t border-slate-100">
+                        <div class="flex items-center gap-3 text-sm text-slate-700 font-medium bg-slate-50 p-3 rounded-xl cursor-pointer hover:bg-slate-100 transition-colors" onclick="showStepForm()">
+                            <i data-lucide="calendar" class="w-4 h-4 text-blue-600"></i>
+                            <div>
+                                <p id="summary-date"></p>
+                                <p id="summary-time" class="text-xs text-slate-500 font-normal"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-8">
+                    
+                    <!-- Step 1: Date & Time Selection -->
+                    <div id="booking-step-slots" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span id="calendar-month-label" class="font-medium text-base text-slate-900"></span>
+                                <div class="flex gap-2">
+                                    <button onclick="changeMonth(-1)" class="p-2 hover:bg-slate-100 rounded-lg text-slate-500 cursor-pointer transition-colors" aria-label="Previous Month"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                                    <button onclick="changeMonth(1)" class="p-2 hover:bg-slate-100 rounded-lg text-slate-500 cursor-pointer transition-colors" aria-label="Next Month"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-7 gap-y-3 text-center text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
+                                <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                            </div>
+                            
+                            <div id="calendar-grid" class="grid grid-cols-7 gap-y-2 text-sm text-center font-medium"></div>
+                        </div>
+                        
+                        <div class="flex flex-col">
+                            <div class="flex items-center justify-between mb-4">
+                                <span id="target-day-label" class="font-medium text-slate-900 text-sm md:text-base"></span>
+                            </div>
+                            <div id="time-slots-container" class="grid grid-cols-2 md:grid-cols-3 gap-2 max-h-[320px] overflow-y-auto pr-1"></div>
+                            <p id="no-slots-msg" class="text-sm text-slate-400 text-center py-8 hidden">Select a date to view available times</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Details Form -->
+                    <div id="booking-step-form" class="hidden-form flex-col gap-5">
+                        
+                        <div id="form-summary-bar" class="bg-slate-50 p-4 rounded-xl mb-2 flex items-center justify-between">
+                            <div class="flex items-center gap-3 text-sm text-slate-700">
+                                <i data-lucide="calendar" class="w-4 h-4 text-blue-600"></i>
+                                <span id="form-summary-text" class="font-medium"></span>
+                            </div>
+                            <button onclick="showStepSlots()" class="text-xs font-medium text-blue-600 hover:text-blue-800 cursor-pointer bg-transparent border-0 p-2 rounded-md hover:bg-blue-50 transition-colors">Change</button>
+                        </div>
+
+                        <div>
+                            <label for="booking-name" class="block text-sm font-medium text-slate-700 mb-1.5">Your name *</label>
+                            <input id="booking-name" type="text" placeholder="John Doe" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-all bg-white text-sm text-slate-800">
+                        </div>
+                        
+                        <div>
+                            <label for="booking-email" class="block text-sm font-medium text-slate-700 mb-1.5">Email address *</label>
+                            <input id="booking-email" type="email" placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-all bg-white text-sm text-slate-800">
+                        </div>
+
+                        <div>
+                            <label for="booking-business" class="block text-sm font-medium text-slate-700 mb-1.5">Business name *</label>
+                            <input id="booking-business" type="text" placeholder="e.g. Anthropic" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-all bg-white text-sm text-slate-800">
+                        </div>
+
+                        <div>
+                            <label for="booking-help" class="block text-sm font-medium text-slate-700 mb-1.5">What can we help with? *</label>
+                            <textarea id="booking-help" rows="3" placeholder="e.g. Agentic crypto platform" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-all bg-white text-sm text-slate-800 resize-none"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-slate-700 mb-3">How did you hear about us? *</label>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm text-slate-700 font-medium">
+                                <label class="flex items-center gap-2 cursor-pointer p-3 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors"><input type="radio" name="source" value="referral" class="w-4 h-4 accent-slate-900"> Referral</label>
+                                <label class="flex items-center gap-2 cursor-pointer p-3 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors"><input type="radio" name="source" value="twitter" class="w-4 h-4 accent-slate-900"> X / Twitter</label>
+                                <label class="flex items-center gap-2 cursor-pointer p-3 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors"><input type="radio" name="source" value="linkedin" class="w-4 h-4 accent-slate-900"> LinkedIn</label>
+                                <label class="flex items-center gap-2 cursor-pointer p-3 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors"><input type="radio" name="source" value="ai" class="w-4 h-4 accent-slate-900"> AI</label>
+                                <label class="flex items-center gap-2 cursor-pointer p-3 border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors col-span-2 sm:col-span-1"><input type="radio" name="source" value="other" class="w-4 h-4 accent-slate-900"> Other</label>
+                            </div>
+                        </div>
+
+                        <p class="text-xs text-slate-400 mt-2">
+                            By proceeding, you agree to luviio.com's <a href="#/terms" onclick="event.preventDefault(); navigateTo('terms')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Terms</a> and <a href="#/policy" onclick="event.preventDefault(); navigateTo('policy')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Privacy Policy</a>.
+                        </p>
+
+                        <div class="flex items-center justify-end gap-4 mt-4 pt-4 border-t border-slate-100">
+                            <button onclick="showStepSlots()" class="px-5 py-2.5 text-sm font-medium text-slate-500 hover:text-slate-800 cursor-pointer bg-transparent border-0 transition-colors">Back</button>
+                            <button id="submit-booking-btn" onclick="submitBooking()" class="px-6 py-2.5 text-sm font-medium bg-[#051A24] text-white rounded-xl shadow-md hover:bg-slate-800 transition-all cursor-pointer hover:scale-[1.02]">Confirm Booking</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Success State -->
+                    <div id="booking-step-success" class="hidden flex-col items-center justify-center py-16 text-center">
+                        <div class="w-20 h-20 rounded-full bg-emerald-50 flex items-center justify-center mb-6">
+                            <svg class="w-10 h-10 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12" class="check-animated"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-semibold tracking-tight text-[#0D212C] mb-2">Booking Confirmed!</h3>
+                        <p class="text-sm text-slate-500 leading-relaxed max-w-sm mb-6" id="success-details"></p>
+                        <button onclick="resetBooking()" class="px-6 py-2.5 text-sm font-medium bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-200 transition-colors cursor-pointer border-0">Book another slot</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer class="w-full px-6 pt-24 pb-8 bg-white border-t border-slate-100" id="site-footer">
         <div class="max-w-7xl mx-auto">
@@ -592,18 +758,18 @@
     </footer>
 
     <!-- Bottom Nav -->
-    <div id="bottom-nav" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white/95 backdrop-blur-md rounded-full pl-3 pr-2.5 py-2.5 flex items-center justify-between gap-4 shadow-[0px_0px_0px_0.5px_rgba(0,0,0,0.05),0px_10px_30px_rgba(0,0,0,0.08)] border border-slate-100/80 whitespace-nowrap">
-        <a href="#" onclick="event.preventDefault(); window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-2 no-underline">
-            <img src="https://images.luviio.com/luviio-crop-img.png" alt="Luviio" class="w-8 h-8 rounded-full object-cover">
+    <nav id="bottom-nav" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-white/90 backdrop-blur-xl rounded-full pl-3 pr-2 py-2 flex items-center justify-between gap-2 md:gap-4 shadow-[0px_10px_30px_rgba(0,0,0,0.08)] border border-slate-200/60 whitespace-nowrap max-w-[calc(100%-2rem)]">
+        <a href="#" onclick="event.preventDefault(); window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-2 no-underline" aria-label="Back to top">
+            <img src="https://images.luviio.com/luviio-crop-img.png" alt="Luviio Studio" class="w-9 h-9 rounded-full object-cover">
         </a>
         
-        <div class="flex items-center gap-5 font-medium text-[15px] text-slate-800">
+        <div class="flex items-center gap-4 md:gap-6 font-medium text-sm md:text-[15px] text-slate-800">
             <a href="#projects-section" class="hover:text-black transition-colors no-underline">Work</a>
             <a href="#pricing-section" class="hover:text-black transition-colors no-underline">Pricing</a>
         </div>
         
-        <button onclick="scrollToBooking()" class="bg-[#2563EB] text-white rounded-full px-5 py-2 text-sm font-medium shadow-blue-btn hover:bg-blue-700 cursor-pointer transition-all">Book a call</button>
-    </div>
+        <button onclick="scrollToBooking()" class="bg-[#2563EB] text-white rounded-full px-4 md:px-5 py-2 text-xs md:text-sm font-medium shadow-blue-btn hover:bg-blue-700 cursor-pointer transition-all">Book a call</button>
+    </nav>
 
     <script>
         // Initialize Icons
@@ -627,6 +793,20 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('[data-observe]').forEach(section => viewObserver.observe(section));
 
+        // Footer Observer for Bottom Nav
+        const footer = document.getElementById('site-footer');
+        const bottomNav = document.getElementById('bottom-nav');
+        const footerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    bottomNav.classList.add('nav-hidden');
+                } else {
+                    bottomNav.classList.remove('nav-hidden');
+                }
+            });
+        }, { threshold: 0.1 });
+        footerObserver.observe(footer);
+
         // Parallax
         const parallaxImg = document.getElementById('parallax-img');
         const parallaxSection = document.getElementById('parallax-section');
@@ -644,7 +824,12 @@
         const teamHoverImg = document.getElementById('team-hover-img');
         document.querySelectorAll('.team-name-hover').forEach(name => {
             name.addEventListener('mouseenter', () => { teamHoverImg.src = name.dataset.img; teamHoverImg.classList.add('active'); });
-            name.addEventListener('mousemove', (e) => { teamHoverImg.style.left = `${e.clientX+20}px`; teamHoverImg.style.top = `${e.clientY-80}px`; });
+            name.addEventListener('mousemove', (e) => { 
+                requestAnimationFrame(() => {
+                    teamHoverImg.style.left = `${e.clientX+20}px`; 
+                    teamHoverImg.style.top = `${e.clientY-80}px`;
+                });
+            });
             name.addEventListener('mouseleave', () => { teamHoverImg.classList.remove('active'); });
         });
 
@@ -666,6 +851,7 @@
             carouselTrack.innerHTML = '';
             carouselList.forEach((item) => {
                 const card = document.createElement('div');
+                card.setAttribute('role', 'listitem');
                 card.className = "bg-white border border-slate-50 rounded-[32px] md:rounded-[40px] shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-6 md:pl-10 md:pr-24 py-8 shrink-0 flex flex-col justify-between h-[260px] select-none transition-transform duration-300 hover:scale-[0.99]";
                 card.style.width = window.innerWidth < 768 ? 'calc(100vw - 48px)' : `${cardWidthDesktop}px`;
                 card.innerHTML = `<div><svg class="w-8 h-8 text-[#0D212C]/10 mb-3 fill-current" viewBox="0 0 32 32"><path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2h2V8h-2zm14 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2h2V8h-2z" /></svg><p class="text-base text-[#0D212C] leading-relaxed line-clamp-3 tracking-tight">"${item.quote}"</p></div><div class="flex items-center gap-4 mt-4"><img src="${item.avatar}" alt="${item.name}" class="w-12 h-12 rounded-full object-cover"><div><h4 class="font-semibold text-sm text-[#0D212C]">${item.name}</h4><p class="text-xs text-[#273C46] flex items-center gap-1 mt-0.5"><span>→</span> ${item.role}, ${item.company}</p></div></div>`;
@@ -721,7 +907,7 @@
                 const isPast = dateObj < new Date(today.getFullYear(), today.getMonth(), today.getDate());
                 
                 const btn = document.createElement('button');
-                btn.className = `w-9 h-9 rounded-full flex items-center justify-center mx-auto transition-colors ${isPast ? 'text-slate-300 cursor-not-allowed' : 'hover:bg-slate-100 cursor-pointer text-slate-700'}`;
+                btn.className = `cal-day-btn w-9 h-9 rounded-full flex items-center justify-center mx-auto transition-all ${isPast ? 'text-slate-300 cursor-not-allowed disabled' : 'hover:bg-slate-100 cursor-pointer text-slate-700'}`;
                 if (!isPast) btn.onclick = () => selectDate(dateObj);
                 btn.textContent = day;
                 grid.appendChild(btn);
@@ -737,16 +923,21 @@
 
         function selectDate(dateObj) {
             selectedDate = dateObj;
+            
+            // Update calendar UI
+            document.querySelectorAll('.cal-day-btn').forEach(b => b.classList.remove('selected'));
+            if(event && event.target) event.target.classList.add('selected');
+            
             document.getElementById('target-day-label').textContent = dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
             
             // Generate dummy time slots
-            const slots = ["09:00 AM", "10:30 AM", "01:00 PM", "03:30 PM", "05:00 PM"];
+            const slots = ["09:00 AM", "10:30 AM", "01:00 PM", "03:30 PM", "05:00 PM", "06:00 PM"];
             const container = document.getElementById('time-slots-container');
             container.innerHTML = '';
             
             slots.forEach(time => {
                 const btn = document.createElement('button');
-                btn.className = 'time-slot-btn w-full px-4 py-2.5 border border-slate-200 rounded-xl text-sm text-slate-700 hover:border-slate-900 transition-colors cursor-pointer';
+                btn.className = 'time-slot-btn px-3 py-2.5 border border-slate-200 rounded-xl text-xs md:text-sm text-slate-700 hover:border-slate-900 hover:bg-slate-50 transition-all cursor-pointer font-medium';
                 btn.textContent = time;
                 btn.onclick = () => selectTime(time, btn);
                 container.appendChild(btn);
@@ -761,30 +952,30 @@
             document.getElementById('booking-datetime-summary').classList.remove('hidden');
             document.getElementById('summary-date').textContent = selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
             document.getElementById('summary-time').textContent = time;
+
+            // Automatically show form
+            setTimeout(() => {
+                showStepForm();
+            }, 300);
         }
 
         function showStepForm() {
             if (!selectedDate || !selectedTime) return alert('Please select a date and time first.');
             document.getElementById('booking-step-slots').classList.add('hidden');
-            document.getElementById('booking-step-form').classList.remove('hidden');
+            const form = document.getElementById('booking-step-form');
+            form.classList.remove('hidden-form');
+            form.classList.add('visible-form');
             document.getElementById('form-summary-text').textContent = `${selectedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} at ${selectedTime}`;
+            lucide.createIcons();
         }
 
         function showStepSlots() {
-            document.getElementById('booking-step-form').classList.add('hidden');
+            const form = document.getElementById('booking-step-form');
+            form.classList.add('hidden-form');
+            form.classList.remove('visible-form');
             document.getElementById('booking-step-slots').classList.remove('hidden');
         }
 
-        // Add event listener to time slots to automatically go to next step or show summary
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('time-slot-btn')) {
-                setTimeout(() => {
-                    // Optional: auto-switch to form
-                    // showStepForm(); 
-                }, 300);
-            }
-        });
-        
         // Make sure we jump to step form if they have selected time and click anywhere on summary
         document.getElementById('booking-datetime-summary').addEventListener('click', showStepForm);
 
@@ -819,8 +1010,10 @@
                 if (!response.ok) throw new Error('Network response was not ok');
                 
                 // Show Success State
-                document.getElementById('booking-step-form').classList.add('hidden');
+                document.getElementById('booking-step-form').classList.remove('visible-form');
+                document.getElementById('booking-step-form').classList.add('hidden-form');
                 document.getElementById('booking-step-success').classList.remove('hidden');
+                document.getElementById('booking-step-success').classList.add('flex');
                 document.getElementById('success-details').textContent = `A calendar invite for ${selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} at ${selectedTime} (${timezone}) will be sent to ${email}.`;
 
             } catch (error) {
@@ -832,14 +1025,18 @@
 
         function resetBooking() {
             document.getElementById('booking-step-success').classList.add('hidden');
+            document.getElementById('booking-step-success').classList.remove('flex');
             document.getElementById('booking-step-slots').classList.remove('hidden');
             document.getElementById('booking-datetime-summary').classList.add('hidden');
             document.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
+            document.querySelectorAll('.cal-day-btn').forEach(b => b.classList.remove('selected'));
             document.getElementById('booking-name').value = '';
             document.getElementById('booking-email').value = '';
             document.getElementById('booking-business').value = '';
             document.getElementById('booking-help').value = '';
-            document.querySelector('input[name="source"]:checked').checked = false;
+            if(document.querySelector('input[name="source"]:checked')) {
+                document.querySelector('input[name="source"]:checked').checked = false;
+            }
             selectedDate = null;
             selectedTime = null;
         }
@@ -854,6 +1051,124 @@
 
         // Initialize Calendar on Load
         renderCalendar();
+
+        // ==========================================
+        // PARTNER SECTION INTERACTIVE GLOW & TRAIL
+        // ==========================================
+        const partnerContainer = document.getElementById('interactive-partner-container');
+        const partnerCanvas = document.getElementById('partner-canvas');
+        const partnerHeading = document.getElementById('partner-heading');
+        const partnerCta = document.getElementById('partner-cta');
+
+        // Create glow element
+        const glow = document.createElement('div');
+        glow.style.position = 'absolute';
+        glow.style.width = '600px';
+        glow.style.height = '600px';
+        glow.style.borderRadius = '50%';
+        glow.style.background = 'radial-gradient(circle, rgba(99,102,241,0.15) 0%, rgba(37,99,235,0.05) 40%, transparent 70%)';
+        glow.style.filter = 'blur(40px)';
+        glow.style.pointerEvents = 'none';
+        glow.style.transform = 'translate(-50%, -50%)';
+        glow.style.transition = 'opacity 300ms ease';
+        glow.style.opacity = '0';
+        glow.style.willChange = 'transform, left, top';
+        partnerCanvas.appendChild(glow);
+
+        let mouseX = 0, mouseY = 0;
+        let currentX = 0, currentY = 0;
+        let isInside = false;
+
+        partnerContainer.addEventListener('mouseenter', () => {
+            isInside = true;
+            glow.style.opacity = '1';
+        });
+
+        partnerContainer.addEventListener('mouseleave', () => {
+            isInside = false;
+            glow.style.opacity = '0';
+            partnerHeading.style.transform = 'translateY(0) scale(1)';
+            partnerCta.style.transform = 'scale(1)';
+        });
+
+        partnerContainer.addEventListener('mousemove', (e) => {
+            const rect = partnerContainer.getBoundingClientRect();
+            mouseX = e.clientX - rect.left;
+            mouseY = e.clientY - rect.top;
+
+            // Proximity effect for heading
+            const headingRect = partnerHeading.getBoundingClientRect();
+            const headingCenterX = headingRect.left + headingRect.width / 2;
+            const headingCenterY = headingRect.top + headingRect.height / 2;
+            const distX = e.clientX - headingCenterX;
+            const distY = e.clientY - headingCenterY;
+            const distance = Math.sqrt(distX * distX + distY * distY);
+
+            if (distance < 300) {
+                const pushX = (distX / distance) * -10;
+                const pushY = (distY / distance) * -10;
+                partnerHeading.style.transform = `translate(${pushX}px, ${pushY}px) scale(1.02)`;
+                
+                // Lift CTA slightly
+                partnerCta.style.transform = 'translateY(-4px) scale(1.02)';
+            } else {
+                partnerHeading.style.transform = 'translateY(0) scale(1)';
+                partnerCta.style.transform = 'scale(1)';
+            }
+
+            // Create trail occasionally
+            if (Math.random() > 0.85) {
+                createTrail(mouseX, mouseY);
+            }
+        });
+
+        function animateGlow() {
+            if (isInside) {
+                currentX += (mouseX - currentX) * 0.1;
+                currentY += (mouseY - currentY) * 0.1;
+                glow.style.left = `${currentX}px`;
+                glow.style.top = `${currentY}px`;
+            }
+            requestAnimationFrame(animateGlow);
+        }
+        animateGlow();
+
+        const trailImages = [
+            "https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif",
+            "https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif",
+            "https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif",
+            "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
+            "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif"
+        ];
+
+        function createTrail(x, y) {
+            const img = document.createElement('img');
+            img.src = trailImages[Math.floor(Math.random() * trailImages.length)];
+            img.className = 'partner-trail';
+            img.style.width = `${80 + Math.random() * 60}px`;
+            img.style.height = `${80 + Math.random() * 60}px`;
+            img.style.left = `${x - 40}px`;
+            img.style.top = `${y - 40}px`;
+            
+            partnerCanvas.appendChild(img);
+
+            // Animate in
+            requestAnimationFrame(() => {
+                img.classList.add('visible');
+            });
+
+            // Animate out
+            setTimeout(() => {
+                img.classList.remove('visible');
+                img.classList.add('fade-out');
+                const rot = Math.random() * 20 - 10;
+                img.style.transform = `scale(0.8) rotate(${rot}deg)`;
+                
+                setTimeout(() => {
+                    img.remove();
+                }, 600);
+            }, 800);
+        }
 
     </script>
 </body>
