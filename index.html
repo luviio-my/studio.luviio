@@ -375,6 +375,20 @@
         .pricing-row:hover {
             background-color: #f8fafc;
         }
+
+        /* Improved Icon/SVG Styles */
+        .icon-primary {
+            stroke-width: 1.75;
+        }
+        .icon-accent {
+            stroke-width: 2.5;
+        }
+        .lucide {
+            stroke-width: 1.75;
+        }
+        svg {
+            shape-rendering: geometricPrecision;
+        }
     </style>
 </head>
 <body class="bg-white text-[#051A24]">
@@ -816,7 +830,7 @@
                         </div>
 
                         <p class="text-xs text-slate-400 mt-2">
-                            By proceeding, you agree to luviio.com's <a href="#/terms" onclick="event.preventDefault(); navigateTo('terms')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Terms</a> and <a href="#/privacy-policy" onclick="event.preventDefault(); navigateTo('privacy-policy')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Privacy Policy</a>.
+                            By proceeding, you agree to luviio.com's <a href="/terms" onclick="event.preventDefault(); navigateTo('terms')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Terms</a> and <a href="/privacy-policy" onclick="event.preventDefault(); navigateTo('privacy-policy')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Privacy Policy</a>.
                         </p>
 
                         <div class="flex items-center justify-end gap-4 mt-4 pt-4 border-t border-slate-100">
@@ -849,7 +863,7 @@
     <!-- ========================================== -->
     <div id="terms-page" class="route-page">
         <div class="max-w-3xl mx-auto px-6 py-16 md:py-24">
-            <a href="#" onclick="event.preventDefault(); navigateTo('home')" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors mb-12 no-underline">
+            <a href="/home" onclick="event.preventDefault(); navigateTo('home')" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors mb-12 no-underline">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i>
                 Back to home
             </a>
@@ -897,7 +911,7 @@
     <!-- ========================================== -->
     <div id="privacy-policy-page" class="route-page">
         <div class="max-w-3xl mx-auto px-6 py-16 md:py-24">
-            <a href="#" onclick="event.preventDefault(); navigateTo('home')" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors mb-12 no-underline">
+            <a href="/home" onclick="event.preventDefault(); navigateTo('home')" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors mb-12 no-underline">
                 <i data-lucide="arrow-left" class="w-4 h-4"></i>
                 Back to home
             </a>
@@ -938,8 +952,15 @@
     <!-- ========================================== -->
     <div id="partnership-page" class="route-page">
         
+        <div class="max-w-5xl mx-auto px-6 pt-8">
+            <a href="/home" onclick="event.preventDefault(); navigateTo('home')" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors no-underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Back to home
+            </a>
+        </div>
+
         <!-- Hero Section -->
-        <section class="partnership-hero text-white py-20 md:py-32 px-6">
+        <section class="partnership-hero text-white py-20 md:py-32 px-6 mt-8">
             <div class="max-w-5xl mx-auto">
                 <p class="text-xs font-medium uppercase tracking-[0.2em] text-white/50 mb-6">Monthly Partnership</p>
                 <h1 class="text-[40px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-tight mb-8 max-w-4xl">
@@ -1332,14 +1353,14 @@
                 <div class="flex gap-16 md:gap-24">
                     <div class="flex flex-col gap-3">
                         <button onclick="scrollToBooking()" class="text-base text-left bg-transparent border-0 cursor-pointer text-[#051A24] hover:opacity-70 transition-opacity">Services</button>
-                        <a href="#projects-section" onclick="navigateTo('home')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity">Work</a>
+                        <a href="/home#projects-section" onclick="event.preventDefault(); navigateTo('home'); document.getElementById('projects-section').scrollIntoView({behavior: 'smooth'})" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Work</a>
                         <a href="https://luviio.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1 no-underline">Template<i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i></a>
                         <button onclick="document.getElementById('parallax-section').scrollIntoView({behavior: 'smooth'})" class="text-base text-left bg-transparent border-0 cursor-pointer text-[#051A24] hover:opacity-70 transition-opacity">About</button>
-                        <a href="#/partnership" onclick="event.preventDefault(); navigateTo('partnership')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Partnership</a>
+                        <a href="/partnership" onclick="event.preventDefault(); navigateTo('partnership')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Partnership</a>
                     </div>
                     <div class="flex flex-col gap-3">
-                        <a href="#/terms" onclick="event.preventDefault(); navigateTo('terms')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Terms</a>
-                        <a href="#/privacy-policy" onclick="event.preventDefault(); navigateTo('privacy-policy')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Privacy Policy</a>
+                        <a href="/terms" onclick="event.preventDefault(); navigateTo('terms')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Terms</a>
+                        <a href="/privacy-policy" onclick="event.preventDefault(); navigateTo('privacy-policy')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Privacy Policy</a>
                         <a href="https://x.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1 no-underline">x.com <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i></a>
                         <a href="https://linkedin.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1 no-underline">LinkedIn <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i></a>
                     </div>
@@ -1357,13 +1378,13 @@
 
     <!-- Bottom Nav -->
     <nav id="bottom-nav" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-white/90 backdrop-blur-xl rounded-full pl-3 pr-2 py-2 flex items-center justify-between gap-2 md:gap-4 shadow-[0px_10px_30px_rgba(0,0,0,0.08)] border border-slate-200/60 whitespace-nowrap max-w-[calc(100%-2rem)]">
-        <a href="#" onclick="event.preventDefault(); navigateTo('home'); window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-2 no-underline" aria-label="Back to top">
+        <a href="/home" onclick="event.preventDefault(); navigateTo('home'); window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-2 no-underline" aria-label="Back to top">
             <img src="https://images.luviio.com/luviio-crop-img.png" alt="Luviio Studio" class="w-9 h-9 rounded-full object-cover">
         </a>
         
         <div class="flex items-center gap-4 md:gap-6 font-medium text-sm md:text-[15px] text-slate-800">
-            <a href="#projects-section" onclick="navigateTo('home')" class="hover:text-black transition-colors no-underline">Work</a>
-            <a href="#pricing-section" onclick="navigateTo('home')" class="hover:text-black transition-colors no-underline">Pricing</a>
+            <a href="/home#projects-section" onclick="event.preventDefault(); navigateTo('home'); setTimeout(() => document.getElementById('projects-section').scrollIntoView({behavior: 'smooth'}), 100);" class="hover:text-black transition-colors no-underline">Work</a>
+            <a href="/home#pricing-section" onclick="event.preventDefault(); navigateTo('home'); setTimeout(() => document.getElementById('pricing-section').scrollIntoView({behavior: 'smooth'}), 100);" class="hover:text-black transition-colors no-underline">Pricing</a>
         </div>
         
         <button onclick="scrollToBooking()" class="bg-[#2563EB] text-white rounded-full px-4 md:px-5 py-2 text-xs md:text-sm font-medium shadow-blue-btn hover:bg-blue-700 cursor-pointer transition-all">Book a call</button>
@@ -1374,51 +1395,65 @@
         lucide.createIcons();
 
         // ==========================================
-        // ROUTER LOGIC
+        // ROUTER LOGIC (No Hash Routing)
         // ==========================================
         function navigateTo(page) {
             const routes = {
-                'home': '',
-                'terms': '#/terms',
-                'privacy-policy': '#/privacy-policy',
-                'partnership': '#/partnership'
+                'home': '/home',
+                'terms': '/terms',
+                'privacy-policy': '/privacy-policy',
+                'partnership': '/partnership'
             };
+            const path = routes[page] || '/home';
             
-            const hash = routes[page] || '';
-            window.location.hash = hash;
-            handleRouteChange();
+            // Update URL without full page reload
+            window.history.pushState({ page: page }, '', path);
+            handleRouteChange(page);
             
             // Scroll to top for new pages
             if (page !== 'home') {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
 
-        function handleRouteChange() {
-            const hash = window.location.hash;
+        function handleRouteChange(page) {
+            const hash = window.location.hash; // Keep for potential anchor links if any, though mostly unused now
+            const path = window.location.pathname;
             const homePage = document.getElementById('home-page');
             const termsPage = document.getElementById('terms-page');
             const privacyPage = document.getElementById('privacy-policy-page');
             const partnershipPage = document.getElementById('partnership-page');
             const bottomNav = document.getElementById('bottom-nav');
 
+            // Determine current page based on path if 'page' argument is not passed (e.g., on popstate)
+            let targetPage = page;
+            if (!targetPage) {
+                if (path === '/terms') targetPage = 'terms';
+                else if (path === '/privacy-policy') targetPage = 'privacy-policy';
+                else if (path === '/partnership') targetPage = 'partnership';
+                else targetPage = 'home';
+            }
+
             // Hide all route pages
             termsPage.classList.remove('active');
             privacyPage.classList.remove('active');
             partnershipPage.classList.remove('active');
             
-            if (hash === '#/terms') {
+            if (targetPage === 'terms') {
                 homePage.classList.add('inactive');
                 termsPage.classList.add('active');
                 bottomNav.classList.add('nav-hidden');
-            } else if (hash === '#/privacy-policy') {
+            } else if (targetPage === 'privacy-policy') {
                 homePage.classList.add('inactive');
                 privacyPage.classList.add('active');
                 bottomNav.classList.add('nav-hidden');
-            } else if (hash === '#/partnership') {
+            } else if (targetPage === 'partnership') {
                 homePage.classList.add('inactive');
                 partnershipPage.classList.add('active');
-                bottomNav.classList.add('nav-hidden');
+                // Ensure bottom nav remains visible on partnership page
+                bottomNav.classList.remove('nav-hidden');
             } else {
                 homePage.classList.remove('inactive');
                 bottomNav.classList.remove('nav-hidden');
@@ -1428,11 +1463,13 @@
             lucide.createIcons();
         }
 
-        // Listen for hash changes (back/forward navigation)
-        window.addEventListener('hashchange', handleRouteChange);
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', () => {
+            handleRouteChange(null);
+        });
 
         // Handle initial route on page load
-        handleRouteChange();
+        handleRouteChange(null);
 
         // Scroll to booking from route pages
         function scrollToBookingFromRoute() {
