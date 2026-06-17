@@ -182,9 +182,9 @@
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
+            width: 140px;
+            aspect-ratio: 9/16; /* Changed to 9:16 Portrait */
+            border-radius: 12px;
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             opacity: 0;
@@ -204,8 +204,19 @@
         }
         .page-overlay.active { transform: translateY(0); }
         
-        .time-slot-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-        .time-slot-btn.selected { background-color: #051A24; color: white; border-color: #051A24; transform: scale(0.98); }
+        .time-slot-btn:disabled { 
+            opacity: 0.4; 
+            cursor: not-allowed; 
+            background-color: #f1f5f9;
+            color: #94a3b8;
+            border-color: #e2e8f0;
+        }
+        .time-slot-btn.selected { 
+            background-color: #051A24; 
+            color: white; 
+            border-color: #051A24; 
+            transform: scale(0.98); 
+        }
         
         .tz-select, .meeting-select {
             appearance: none; 
@@ -833,7 +844,7 @@
             name.addEventListener('mousemove', (e) => { 
                 requestAnimationFrame(() => {
                     teamHoverImg.style.left = `${e.clientX+20}px`; 
-                    teamHoverImg.style.top = `${e.clientY-80}px`;
+                    teamHoverImg.style.top = `${e.clientY-180}px`; // Adjusted Y offset for taller portrait image
                 });
             });
             name.addEventListener('mouseleave', () => { teamHoverImg.classList.remove('active'); });
@@ -914,7 +925,7 @@
                 
                 const btn = document.createElement('button');
                 btn.className = `cal-day-btn w-9 h-9 rounded-full flex items-center justify-center mx-auto transition-all ${isPast ? 'text-slate-300 cursor-not-allowed disabled' : 'hover:bg-slate-100 cursor-pointer text-slate-700'}`;
-                if (!isPast) btn.onclick = () => selectDate(dateObj);
+                if (!isPast) btn.onclick = (e) => selectDate(dateObj, e);
                 btn.textContent = day;
                 grid.appendChild(btn);
             }
@@ -927,7 +938,7 @@
             renderCalendar();
         }
 
-        function selectDate(dateObj) {
+        function selectDate(dateObj, event) {
             selectedDate = dateObj;
             
             // Update calendar UI
@@ -941,11 +952,32 @@
             const container = document.getElementById('time-slots-container');
             container.innerHTML = '';
             
+            const now = new Date();
+            const isToday = dateObj.getDate() === now.getDate() && 
+                            dateObj.getMonth() === now.getMonth() && 
+                            dateObj.getFullYear() === now.getFullYear();
+            
             slots.forEach(time => {
                 const btn = document.createElement('button');
                 btn.className = 'time-slot-btn px-3 py-2.5 border border-slate-200 rounded-xl text-xs md:text-sm text-slate-700 hover:border-slate-900 hover:bg-slate-50 transition-all cursor-pointer font-medium';
                 btn.textContent = time;
-                btn.onclick = () => selectTime(time, btn);
+                
+                // Disable if time has already passed today
+                if (isToday) {
+                    const slotTime = new Date(dateObj);
+                    const hours = time.includes('PM') && !time.includes('12') ? parseInt(time.slice(0,2)) + 12 : parseInt(time.slice(0,2));
+                    const mins = time.includes('30') ? 30 : 0;
+                    slotTime.setHours(hours, mins, 0, 0);
+                    
+                    if (slotTime < now) {
+                        btn.disabled = true;
+                    } else {
+                        btn.onclick = () => selectTime(time, btn);
+                    }
+                } else {
+                    btn.onclick = () => selectTime(time, btn);
+                }
+                
                 container.appendChild(btn);
             });
         }
