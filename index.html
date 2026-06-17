@@ -183,7 +183,7 @@
             pointer-events: none;
             z-index: 9999;
             width: 140px;
-            aspect-ratio: 9/16; /* Changed to 9:16 Portrait */
+            aspect-ratio: 9/16;
             border-radius: 12px;
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
@@ -197,13 +197,12 @@
         .team-name-hover { cursor: pointer; transition: color 200ms ease; }
         .team-name-hover:hover { color: #0D212C; }
 
-        .page-overlay {
-            position: fixed; inset: 0; background: rgba(255,255,255,0.98); z-index: 9000;
-            transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow-y: auto;
-        }
-        .page-overlay.active { transform: translateY(0); }
-        
+        /* Route Pages */
+        .route-page { display: none; }
+        .route-page.active { display: block; animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        #home-page { display: block; }
+        #home-page.inactive { display: none; }
+
         .time-slot-btn:disabled { 
             opacity: 0.4; 
             cursor: not-allowed; 
@@ -319,65 +318,73 @@
             outline-offset: 2px;
             border-radius: 4px;
         }
+
+        /* Testimonials Redesign */
+        .testimonial-feature-card {
+            background: linear-gradient(180deg, #ffffff 0%, #fafbfc 100%);
+            border: 1px solid rgba(5, 26, 36, 0.06);
+            box-shadow: 0 1px 2px rgba(5, 26, 36, 0.04), 0 12px 40px rgba(5, 26, 36, 0.06);
+        }
+        .testimonial-mini-card {
+            background: #ffffff;
+            border: 1px solid rgba(5, 26, 36, 0.06);
+            transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 300ms ease;
+        }
+        .testimonial-mini-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(5, 26, 36, 0.08);
+        }
+        .quote-mark {
+            font-family: 'PP Mondwest', Georgia, serif;
+            line-height: 0.8;
+        }
+
+        /* Partnership Page Styles */
+        .partnership-hero {
+            background: radial-gradient(ellipse at top, #0d212c 0%, #051A24 60%);
+        }
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid rgba(5, 26, 36, 0.08);
+            transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .feature-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(5, 26, 36, 0.2);
+            box-shadow: 0 12px 40px rgba(5, 26, 36, 0.06);
+        }
+        .step-number {
+            font-family: 'PP Mondwest', Georgia, serif;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+        }
+        .audience-card {
+            background: #fafbfc;
+            border: 1px solid rgba(5, 26, 36, 0.06);
+            transition: all 300ms ease;
+        }
+        .audience-card:hover {
+            background: #ffffff;
+            border-color: rgba(5, 26, 36, 0.15);
+            transform: translateY(-2px);
+        }
+        .pricing-row {
+            transition: background-color 200ms ease;
+        }
+        .pricing-row:hover {
+            background-color: #f8fafc;
+        }
     </style>
 </head>
 <body class="bg-white text-[#051A24]">
 
     <img id="team-hover-img" class="team-hover-img" src="" alt="Team Member">
 
-    <!-- Terms Page Overlay -->
-    <div id="terms-overlay" class="page-overlay" role="dialog" aria-modal="true" aria-labelledby="terms-title">
-        <div class="max-w-3xl mx-auto px-6 py-16 relative">
-            <button onclick="closeOverlay()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors cursor-pointer border-0 bg-transparent" aria-label="Close Terms">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-            <h1 id="terms-title" class="text-4xl font-serif-custom tracking-tight mb-8">Terms of Service</h1>
-            <div class="text-sm md:text-base text-slate-700 leading-relaxed space-y-6">
-                <p>Last updated: June 2025</p>
-                <h3 class="text-lg font-semibold text-slate-900">1. Agreement to Terms</h3>
-                <p>By accessing and using the services provided by Luviio Studio ("Luviio", "we", "us", or "our"), you agree to be bound by these Terms of Service. If you do not agree with these terms, please do not use our services.</p>
-                <h3 class="text-lg font-semibold text-slate-900">2. Services</h3>
-                <p>Luviio provides creative design, web development, business systems, and automation solutions. All services are subject to the specific scope, timeline, and terms outlined in individual project proposals and agreements.</p>
-                <h3 class="text-lg font-semibold text-slate-900">3. Client Responsibilities</h3>
-                <p>Clients agree to provide timely feedback, necessary assets, and access required for project completion. Delays in client responsiveness may impact project timelines and delivery dates.</p>
-                <h3 class="text-lg font-semibold text-slate-900">4. Payments</h3>
-                <p>Payment terms are as specified in individual project agreements. Unless otherwise stated, invoices are due within 14 days of issuance. We reserve the right to pause work on projects with overdue payments.</p>
-                <h3 class="text-lg font-semibold text-slate-900">5. Intellectual Property</h3>
-                <p>Upon full payment, clients receive ownership of final deliverables as specified in their project agreement. Luviio retains the right to showcase the work in our portfolio unless a specific NDA is in place.</p>
-                <h3 class="text-lg font-semibold text-slate-900">6. Limitation of Liability</h3>
-                <p>Luviio's liability is limited to the total amount paid for the specific service in question. We are not liable for any indirect, incidental, or consequential damages arising from the use of our services.</p>
-                <h3 class="text-lg font-semibold text-slate-900">7. Governing Law</h3>
-                <p>These terms are governed by the laws of Malaysia. Any disputes shall be resolved in the courts of Kedah, Malaysia.</p>
-                <p>For any questions regarding these terms, please contact us at hello@luviio.com.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Privacy Policy Page Overlay -->
-    <div id="policy-overlay" class="page-overlay" role="dialog" aria-modal="true" aria-labelledby="policy-title">
-        <div class="max-w-3xl mx-auto px-6 py-16 relative">
-            <button onclick="closeOverlay()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors cursor-pointer border-0 bg-transparent" aria-label="Close Privacy Policy">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
-            <h1 id="policy-title" class="text-4xl font-serif-custom tracking-tight mb-8">Privacy Policy</h1>
-            <div class="text-sm md:text-base text-slate-700 leading-relaxed space-y-6">
-                <p>Last updated: June 2025</p>
-                <h3 class="text-lg font-semibold text-slate-900">1. Information We Collect</h3>
-                <p>We collect information you provide directly to us, such as your name, email address, business name, and project details when you book a consultation or contact us. We also collect usage data through cookies and similar technologies.</p>
-                <h3 class="text-lg font-semibold text-slate-900">2. How We Use Your Information</h3>
-                <p>We use your information to provide and improve our services, communicate with you, schedule meetings, and send relevant updates. We do not sell your personal information to third parties.</p>
-                <h3 class="text-lg font-semibold text-slate-900">3. Information Sharing</h3>
-                <p>We may share your information with service providers who assist in our operations (such as scheduling and communication tools), but only to the extent necessary for them to perform their services on our behalf.</p>
-                <h3 class="text-lg font-semibold text-slate-900">4. Data Security</h3>
-                <p>We implement reasonable security measures to protect your personal information. However, no method of transmission over the Internet or electronic storage is completely secure.</p>
-                <h3 class="text-lg font-semibold text-slate-900">5. Your Rights</h3>
-                <p>You may request access to, correction of, or deletion of your personal data at any time by contacting us at hello@luviio.com. We will respond to such requests within a reasonable timeframe.</p>
-                <h3 class="text-lg font-semibold text-slate-900">6. Contact Us</h3>
-                <p>If you have questions about this Privacy Policy, please contact us at hello@luviio.com or through our website at luviio.com.</p>
-            </div>
-        </div>
-    </div>
-
+    <!-- ========================================== -->
+    <!-- HOME PAGE (Default Route) -->
+    <!-- ========================================== -->
+    <div id="home-page">
     <header>
         <section class="max-w-[440px] mx-auto px-6 pt-12 md:pt-16 text-center flex flex-col items-center select-none" data-observe>
             <h1 class="font-serif-custom font-semibold text-[32px] md:text-[40px] lg:text-[44px] text-[#051A24] tracking-tight mb-2 reveal-element" style="animation-delay: 0.1s;">
@@ -392,7 +399,7 @@
             
             <div class="flex flex-col gap-4 text-sm md:text-base text-[#051A24] leading-relaxed text-left mt-5 md:mt-6 reveal-element" style="animation-delay: 0.4s;">
                 <p>I founded Luviio Studio to help ambitious businesses build a stronger digital foundation. Through modern websites, custom business systems, and intelligent automation, we create solutions that simplify operations, improve customer experiences, and support long-term growth.</p>
-                <p>Every engagement begins with understanding the business behind the project. Whether it’s a corporate website, ERP platform, booking system, membership portal, or AI-powered workflow, every solution is designed with purpose and built to perform.</p>
+                <p>Every engagement begins with understanding the business behind the project. Whether it's a corporate website, ERP platform, booking system, membership portal, or AI-powered workflow, every solution is designed with purpose and built to perform.</p>
                 <p>The studio remains deliberately focused, allowing every client to receive direct attention, faster execution, and dependable long-term support.</p>
             </div>
 
@@ -508,7 +515,7 @@
                             </div>
                             <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                                 <button onclick="scrollToBooking()" class="bg-white text-[#051A24] rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">Start a chat</button>
-                                <button onclick="scrollToBooking()" class="text-sm font-medium text-[#E0EBF0] hover:text-white bg-transparent border-0 cursor-pointer transition-colors">How it works</button>
+                                <button onclick="navigateTo('partnership')" class="text-sm font-medium text-[#E0EBF0] hover:text-white bg-transparent border-0 cursor-pointer transition-colors">How it works</button>
                             </div>
                         </div>
                     </div>
@@ -529,22 +536,83 @@
             </div>
         </section>
 
-        <section class="w-full py-20 bg-white overflow-hidden relative" aria-label="Testimonials">
-            <div class="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
-                <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight max-w-lg">What <span class="font-serif-custom italic">builders</span> say</h2>
-                <div class="flex items-center gap-6">
-                    <div class="flex items-center gap-2">
-                        <div class="flex text-black" id="stars-container" aria-label="5 out of 5 stars"></div>
-                        <span class="text-sm font-medium text-slate-950 tracking-tight">Clutch 5/5</span>
+        <!-- REDESIGNED: What builders say Section -->
+        <section class="w-full py-20 md:py-32 bg-white overflow-hidden relative" aria-label="Testimonials">
+            <div class="max-w-7xl mx-auto px-6">
+                <!-- Section Header -->
+                <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-8 mb-16 md:mb-24">
+                    <div class="max-w-2xl">
+                        <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Testimonials</p>
+                        <h2 class="text-[40px] md:text-[64px] lg:text-[80px] leading-[0.95] text-[#0D212C] tracking-tight">
+                            What <span class="font-serif-custom italic">builders</span><br>say about us.
+                        </h2>
                     </div>
-                    <div class="flex gap-2">
-                        <button onclick="prevSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer" aria-label="Previous Slide"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
-                        <button onclick="nextSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer" aria-label="Next Slide"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                    <div class="flex items-center gap-4">
+                        <div class="flex flex-col items-end">
+                            <div class="flex items-center gap-2 mb-1">
+                                <div class="flex text-black" id="stars-container" aria-label="5 out of 5 stars"></div>
+                            </div>
+                            <span class="text-sm font-medium text-slate-950 tracking-tight">Clutch 5/5</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="prevSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer" aria-label="Previous Slide"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                            <button onclick="nextSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer" aria-label="Next Slide"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="w-full px-6 overflow-hidden" id="carousel-viewport">
-                <div class="flex gap-6 carousel-track" id="carousel-track" role="list"></div>
+
+                <!-- Featured Testimonial Layout -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+                    <!-- Large Featured Card -->
+                    <div class="lg:col-span-7 testimonial-feature-card rounded-[32px] md:rounded-[40px] p-8 md:p-12 lg:p-16 flex flex-col justify-between min-h-[420px]" id="featured-testimonial">
+                        <div>
+                            <div class="quote-mark text-[80px] md:text-[120px] text-[#0D212C]/10 leading-none mb-2">"</div>
+                            <p class="text-[22px] md:text-[32px] lg:text-[36px] leading-[1.25] text-[#0D212C] tracking-tight font-serif-custom" id="featured-quote">
+                                With very little guidance team delivered designs that were consistently spot on...
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-4 mt-8 pt-8 border-t border-slate-100">
+                            <img id="featured-avatar" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Featured testimonial" class="w-14 h-14 rounded-full object-cover">
+                            <div>
+                                <h4 class="font-semibold text-base text-[#0D212C]" id="featured-name">Marcus Anderson</h4>
+                                <p class="text-sm text-slate-500 mt-0.5" id="featured-role">CEO, Data.storage</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Two Stacked Mini Cards -->
+                    <div class="lg:col-span-5 flex flex-col gap-6">
+                        <div class="testimonial-mini-card rounded-[24px] md:rounded-[28px] p-7 md:p-9 flex-1 flex flex-col justify-between min-h-[195px]" id="mini-card-1">
+                            <p class="text-base md:text-lg leading-relaxed text-[#0D212C] tracking-tight line-clamp-3" id="mini-quote-1">
+                                "Danial led the creation of our best fundraising deck to date!..."
+                            </p>
+                            <div class="flex items-center gap-3 mt-5">
+                                <img id="mini-avatar-1" src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Testimonial" class="w-10 h-10 rounded-full object-cover">
+                                <div>
+                                    <h4 class="font-semibold text-sm text-[#0D212C]" id="mini-name-1">alexwu</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5" id="mini-role-1">Founder, Nexgate</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial-mini-card rounded-[24px] md:rounded-[28px] p-7 md:p-9 flex-1 flex flex-col justify-between min-h-[195px]" id="mini-card-2">
+                            <p class="text-base md:text-lg leading-relaxed text-[#0D212C] tracking-tight line-clamp-3" id="mini-quote-2">
+                                "Working with Danial transformed our product vision..."
+                            </p>
+                            <div class="flex items-center gap-3 mt-5">
+                                <img id="mini-avatar-2" src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=150" alt="Testimonial" class="w-10 h-10 rounded-full object-cover">
+                                <div>
+                                    <h4 class="font-semibold text-sm text-[#0D212C]" id="mini-name-2">James Mitchell</h4>
+                                    <p class="text-xs text-slate-500 mt-0.5" id="mini-role-2">VP Product, LaunchPad</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden carousel track for compatibility -->
+                <div class="hidden" id="carousel-viewport">
+                    <div class="flex gap-6 carousel-track" id="carousel-track" role="list"></div>
+                </div>
             </div>
         </section>
 
@@ -748,7 +816,7 @@
                         </div>
 
                         <p class="text-xs text-slate-400 mt-2">
-                            By proceeding, you agree to luviio.com's <a href="#/terms" onclick="event.preventDefault(); navigateTo('terms')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Terms</a> and <a href="#/policy" onclick="event.preventDefault(); navigateTo('policy')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Privacy Policy</a>.
+                            By proceeding, you agree to luviio.com's <a href="#/terms" onclick="event.preventDefault(); navigateTo('terms')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Terms</a> and <a href="#/privacy-policy" onclick="event.preventDefault(); navigateTo('privacy-policy')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Privacy Policy</a>.
                         </p>
 
                         <div class="flex items-center justify-end gap-4 mt-4 pt-4 border-t border-slate-100">
@@ -773,6 +841,489 @@
             </div>
         </section>
     </main>
+    </div>
+    <!-- END HOME PAGE -->
+
+    <!-- ========================================== -->
+    <!-- TERMS PAGE (Route: /terms) -->
+    <!-- ========================================== -->
+    <div id="terms-page" class="route-page">
+        <div class="max-w-3xl mx-auto px-6 py-16 md:py-24">
+            <a href="#" onclick="event.preventDefault(); navigateTo('home')" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors mb-12 no-underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Back to home
+            </a>
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Legal</p>
+            <h1 class="text-[40px] md:text-[56px] font-serif-custom tracking-tight mb-2 text-[#0D212C]">Terms of Service</h1>
+            <p class="text-sm text-slate-500 mb-12">Last updated: June 2025</p>
+            <div class="text-base text-slate-700 leading-relaxed space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">1. Agreement to Terms</h3>
+                    <p>By accessing and using the services provided by Luviio Studio ("Luviio", "we", "us", or "our"), you agree to be bound by these Terms of Service. If you do not agree with these terms, please do not use our services.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">2. Services</h3>
+                    <p>Luviio provides creative design, web development, business systems, and automation solutions. All services are subject to the specific scope, timeline, and terms outlined in individual project proposals and agreements.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">3. Client Responsibilities</h3>
+                    <p>Clients agree to provide timely feedback, necessary assets, and access required for project completion. Delays in client responsiveness may impact project timelines and delivery dates.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">4. Payments</h3>
+                    <p>Payment terms are as specified in individual project agreements. Unless otherwise stated, invoices are due within 14 days of issuance. We reserve the right to pause work on projects with overdue payments.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">5. Intellectual Property</h3>
+                    <p>Upon full payment, clients receive ownership of final deliverables as specified in their project agreement. Luviio retains the right to showcase the work in our portfolio unless a specific NDA is in place.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">6. Limitation of Liability</h3>
+                    <p>Luviio's liability is limited to the total amount paid for the specific service in question. We are not liable for any indirect, incidental, or consequential damages arising from the use of our services.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">7. Governing Law</h3>
+                    <p>These terms are governed by the laws of Malaysia. Any disputes shall be resolved in the courts of Kedah, Malaysia.</p>
+                </div>
+                <div class="pt-8 border-t border-slate-100">
+                    <p>For any questions regarding these terms, please contact us at <a href="mailto:hello@luviio.com" class="text-blue-600 hover:underline">hello@luviio.com</a>.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PRIVACY POLICY PAGE (Route: /privacy-policy) -->
+    <!-- ========================================== -->
+    <div id="privacy-policy-page" class="route-page">
+        <div class="max-w-3xl mx-auto px-6 py-16 md:py-24">
+            <a href="#" onclick="event.preventDefault(); navigateTo('home')" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 transition-colors mb-12 no-underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                Back to home
+            </a>
+            <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Legal</p>
+            <h1 class="text-[40px] md:text-[56px] font-serif-custom tracking-tight mb-2 text-[#0D212C]">Privacy Policy</h1>
+            <p class="text-sm text-slate-500 mb-12">Last updated: June 2025</p>
+            <div class="text-base text-slate-700 leading-relaxed space-y-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">1. Information We Collect</h3>
+                    <p>We collect information you provide directly to us, such as your name, email address, business name, and project details when you book a consultation or contact us. We also collect usage data through cookies and similar technologies.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">2. How We Use Your Information</h3>
+                    <p>We use your information to provide and improve our services, communicate with you, schedule meetings, and send relevant updates. We do not sell your personal information to third parties.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">3. Information Sharing</h3>
+                    <p>We may share your information with service providers who assist in our operations (such as scheduling and communication tools), but only to the extent necessary for them to perform their services on our behalf.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">4. Data Security</h3>
+                    <p>We implement reasonable security measures to protect your personal information. However, no method of transmission over the Internet or electronic storage is completely secure.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">5. Your Rights</h3>
+                    <p>You may request access to, correction of, or deletion of your personal data at any time by contacting us at hello@luviio.com. We will respond to such requests within a reasonable timeframe.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">6. Contact Us</h3>
+                    <p>If you have questions about this Privacy Policy, please contact us at <a href="mailto:hello@luviio.com" class="text-blue-600 hover:underline">hello@luviio.com</a> or through our website at luviio.com.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- PARTNERSHIP PAGE (Route: /partnership) -->
+    <!-- ========================================== -->
+    <div id="partnership-page" class="route-page">
+        
+        <!-- Hero Section -->
+        <section class="partnership-hero text-white py-20 md:py-32 px-6">
+            <div class="max-w-5xl mx-auto">
+                <p class="text-xs font-medium uppercase tracking-[0.2em] text-white/50 mb-6">Monthly Partnership</p>
+                <h1 class="text-[40px] md:text-[64px] lg:text-[80px] leading-[1.05] tracking-tight mb-8 max-w-4xl">
+                    Your Dedicated Creative Team. <span class="font-serif-custom italic">Without Hiring One.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mb-10">
+                    Scale your brand, website, and marketing with ongoing design support. Work directly with Danial and get access to a trusted creative partner that moves as fast as your business.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                    <p class="text-2xl font-semibold text-white mb-4 sm:mb-0">From <span class="font-serif-custom">RM990</span>/month</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3 md:gap-4 mt-6">
+                    <button onclick="scrollToBookingFromRoute()" class="bg-white text-[#051A24] rounded-full px-7 py-3.5 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-secondary cursor-pointer text-sm md:text-base">
+                        Start a Chat
+                    </button>
+                    <button onclick="scrollToBookingFromRoute()" class="bg-white/10 text-white border border-white/20 rounded-full px-7 py-3.5 font-medium transition-all duration-300 hover:bg-white/20 cursor-pointer text-sm md:text-base backdrop-blur-sm">
+                        Book a Discovery Call
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You Get Section -->
+        <section class="py-20 md:py-32 px-6 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="max-w-2xl mb-16">
+                    <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">What You Get</p>
+                    <h2 class="text-[32px] md:text-[48px] leading-[1.1] text-[#0D212C] tracking-tight mb-6">
+                        Design Support That <span class="font-serif-custom italic">Grows With Your Business</span>
+                    </h2>
+                    <p class="text-base md:text-lg text-slate-600 leading-relaxed">
+                        Instead of hiring freelancers for every task, you get a dedicated creative team that understands your brand and helps you improve it continuously.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="feature-card rounded-3xl p-8">
+                        <div class="w-12 h-12 rounded-2xl bg-[#051A24]/5 flex items-center justify-center mb-6">
+                            <i data-lucide="globe" class="w-6 h-6 text-[#051A24]"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[#0D212C] mb-3">Website Updates</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Keep your website fresh, optimized, and aligned with your business goals.</p>
+                    </div>
+                    <div class="feature-card rounded-3xl p-8">
+                        <div class="w-12 h-12 rounded-2xl bg-[#051A24]/5 flex items-center justify-center mb-6">
+                            <i data-lucide="rocket" class="w-6 h-6 text-[#051A24]"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[#0D212C] mb-3">Landing Pages</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Launch campaigns, products, and offers quickly with conversion-focused landing pages.</p>
+                    </div>
+                    <div class="feature-card rounded-3xl p-8">
+                        <div class="w-12 h-12 rounded-2xl bg-[#051A24]/5 flex items-center justify-center mb-6">
+                            <i data-lucide="megaphone" class="w-6 h-6 text-[#051A24]"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[#0D212C] mb-3">Marketing Creatives</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Ad creatives, banners, promotional graphics, and campaign assets.</p>
+                    </div>
+                    <div class="feature-card rounded-3xl p-8">
+                        <div class="w-12 h-12 rounded-2xl bg-[#051A24]/5 flex items-center justify-center mb-6">
+                            <i data-lucide="instagram" class="w-6 h-6 text-[#051A24]"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[#0D212C] mb-3">Social Content</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Professional visuals for Instagram, LinkedIn, Facebook, and other channels.</p>
+                    </div>
+                    <div class="feature-card rounded-3xl p-8">
+                        <div class="w-12 h-12 rounded-2xl bg-[#051A24]/5 flex items-center justify-center mb-6">
+                            <i data-lucide="layout" class="w-6 h-6 text-[#051A24]"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[#0D212C] mb-3">UI/UX Design</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Improve user experience, flows, interfaces, and digital products.</p>
+                    </div>
+                    <div class="feature-card rounded-3xl p-8">
+                        <div class="w-12 h-12 rounded-2xl bg-[#051A24]/5 flex items-center justify-center mb-6">
+                            <i data-lucide="lightbulb" class="w-6 h-6 text-[#051A24]"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[#0D212C] mb-3">Creative Consulting</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Get strategic feedback before investing time and money into new ideas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section class="py-20 md:py-32 px-6 bg-[#fafbfc]">
+            <div class="max-w-6xl mx-auto">
+                <div class="max-w-2xl mb-16">
+                    <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">How It Works</p>
+                    <h2 class="text-[32px] md:text-[48px] leading-[1.1] text-[#0D212C] tracking-tight">
+                        A <span class="font-serif-custom italic">Simple Process</span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-3xl p-8 border border-slate-100">
+                        <p class="step-number mb-6">01 — Submit Requests</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Send tasks through chat whenever you need design support.</p>
+                    </div>
+                    <div class="bg-white rounded-3xl p-8 border border-slate-100">
+                        <p class="step-number mb-6">02 — We Prioritize</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Your highest-priority request moves into production immediately.</p>
+                    </div>
+                    <div class="bg-white rounded-3xl p-8 border border-slate-100">
+                        <p class="step-number mb-6">03 — Review & Refine</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Receive updates, provide feedback, and request revisions.</p>
+                    </div>
+                    <div class="bg-white rounded-3xl p-8 border border-slate-100">
+                        <p class="step-number mb-6">04 — Repeat</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">Continue submitting requests as your business evolves.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What's Included & Not Included -->
+        <section class="py-20 md:py-32 px-6 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20">
+                    
+                    <!-- What's Included -->
+                    <div>
+                        <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">What's Included</p>
+                        <h2 class="text-[32px] md:text-[40px] leading-[1.1] text-[#0D212C] tracking-tight mb-10">
+                            Everything you need, <span class="font-serif-custom italic">nothing you don't.</span>
+                        </h2>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Unlimited design requests</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                </div>
+                                <span class="text-base text-slate-700">One active task at a time</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Direct communication with Danial</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Fast turnaround times</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Monthly strategy check-ins</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Revisions included</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Long-term creative partnership</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-600"></i>
+                                </div>
+                                <span class="text-base text-slate-700">No contracts required</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Not Included -->
+                    <div>
+                        <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Not Included</p>
+                        <h2 class="text-[32px] md:text-[40px] leading-[1.1] text-[#0D212C] tracking-tight mb-10">
+                            To keep quality high, <span class="font-serif-custom italic">some things are out.</span>
+                        </h2>
+                        <p class="text-sm text-slate-500 mb-6 leading-relaxed">
+                            To keep quality high and turnaround fast, Monthly Partnership does not include:
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="x" class="w-4 h-4 text-red-500"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Custom software development</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="x" class="w-4 h-4 text-red-500"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Large-scale web applications</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="x" class="w-4 h-4 text-red-500"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Complex backend systems</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="x" class="w-4 h-4 text-red-500"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Daily content creation</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                    <i data-lucide="x" class="w-4 h-4 text-red-500"></i>
+                                </div>
+                                <span class="text-base text-slate-700">Video production</span>
+                            </li>
+                        </ul>
+                        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                            <p class="text-sm text-slate-600 leading-relaxed">
+                                <span class="font-medium text-slate-900">These can be quoted separately as custom projects.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perfect For Section -->
+        <section class="py-20 md:py-32 px-6 bg-[#fafbfc]">
+            <div class="max-w-6xl mx-auto">
+                <div class="max-w-2xl mb-16">
+                    <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Perfect For</p>
+                    <h2 class="text-[32px] md:text-[48px] leading-[1.1] text-[#0D212C] tracking-tight">
+                        Built for <span class="font-serif-custom italic">ambitious teams.</span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="audience-card rounded-3xl p-8 md:p-10">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#051A24] flex items-center justify-center">
+                                <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-[#0D212C]">Startups</h3>
+                        </div>
+                        <p class="text-base text-slate-600 leading-relaxed">Need ongoing design support without hiring full-time.</p>
+                    </div>
+                    <div class="audience-card rounded-3xl p-8 md:p-10">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#051A24] flex items-center justify-center">
+                                <i data-lucide="briefcase" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-[#0D212C]">Agencies</h3>
+                        </div>
+                        <p class="text-base text-slate-600 leading-relaxed">Extend your team's capabilities without additional overhead.</p>
+                    </div>
+                    <div class="audience-card rounded-3xl p-8 md:p-10">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#051A24] flex items-center justify-center">
+                                <i data-lucide="layers" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-[#0D212C]">SaaS Products</h3>
+                        </div>
+                        <p class="text-base text-slate-600 leading-relaxed">Continuously improve product experience and marketing assets.</p>
+                    </div>
+                    <div class="audience-card rounded-3xl p-8 md:p-10">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-[#051A24] flex items-center justify-center">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-white"></i>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-[#0D212C]">Growing Businesses</h3>
+                        </div>
+                        <p class="text-base text-slate-600 leading-relaxed">Get a reliable design partner as your company scales.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Clients Choose Luviio -->
+        <section class="py-20 md:py-32 px-6 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="max-w-2xl mb-16">
+                    <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Why Clients Choose Luviio</p>
+                    <h2 class="text-[32px] md:text-[48px] leading-[1.1] text-[#0D212C] tracking-tight">
+                        A partner that <span class="font-serif-custom italic">actually moves the needle.</span>
+                    </h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16">
+                    <div class="border-t border-slate-200 pt-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-sm font-mono text-slate-400">01</span>
+                            <h3 class="text-xl font-semibold text-[#0D212C]">Direct Founder Access</h3>
+                        </div>
+                        <p class="text-base text-slate-600 leading-relaxed">You work directly with Danial throughout the engagement.</p>
+                    </div>
+                    <div class="border-t border-slate-200 pt-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-sm font-mono text-slate-400">02</span>
+                            <h3 class="text-xl font-semibold text-[#0D212C]">Fast & Flexible</h3>
+                        </div>
+                        <p class="text-base text-slate-600 leading-relaxed">No lengthy contracts or agency bureaucracy.</p>
+                    </div>
+                    <div class="border-t border-slate-200 pt-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-sm font-mono text-slate-400">03</span>
+                            <h3 class="text-xl font-semibold text-[#0D212C]">High-End Design Standards</h3>
+                        </div>
+                        <p class="text-base text-slate-600 leading-relaxed">Modern, conversion-focused design tailored to ambitious brands.</p>
+                    </div>
+                    <div class="border-t border-slate-200 pt-8">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-sm font-mono text-slate-400">04</span>
+                            <h3 class="text-xl font-semibold text-[#0D212C]">Built For Growth</h3>
+                        </div>
+                        <p class="text-base text-slate-600 leading-relaxed">A long-term creative partnership designed to evolve with your business.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section class="py-20 md:py-32 px-6 bg-[#051A24] text-white">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-[36px] md:text-[56px] lg:text-[64px] leading-[1.05] tracking-tight mb-8">
+                    Ready to Build <span class="font-serif-custom italic">Something Better?</span>
+                </h2>
+                <p class="text-lg md:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto mb-8">
+                    Whether you need a website update, a new landing page, or ongoing creative support, Luviio becomes an extension of your team.
+                </p>
+                <p class="text-2xl font-semibold mb-8">From <span class="font-serif-custom">RM990</span>/month</p>
+                <button onclick="scrollToBookingFromRoute()" class="bg-white text-[#051A24] rounded-full px-8 py-4 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-secondary cursor-pointer text-base inline-flex items-center gap-3">
+                    <img src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial avatar" class="w-8 h-8 rounded-full object-cover">
+                    Start a Chat
+                </button>
+            </div>
+        </section>
+
+        <!-- Website Pricing Section -->
+        <section class="py-20 md:py-32 px-6 bg-white">
+            <div class="max-w-4xl mx-auto">
+                <div class="max-w-2xl mb-12">
+                    <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-400 mb-4">Website Pricing</p>
+                    <h2 class="text-[32px] md:text-[48px] leading-[1.1] text-[#0D212C] tracking-tight mb-6">
+                        Project-based <span class="font-serif-custom italic">pricing options.</span>
+                    </h2>
+                    <p class="text-base text-slate-600 leading-relaxed">
+                        Prefer a one-off project? Here's a starting point for our most common engagements.
+                    </p>
+                </div>
+
+                <div class="rounded-3xl border border-slate-100 overflow-hidden">
+                    <div class="grid grid-cols-2 px-8 py-5 bg-slate-50 border-b border-slate-100">
+                        <div class="text-sm font-medium text-slate-500 uppercase tracking-wider">Service</div>
+                        <div class="text-sm font-medium text-slate-500 uppercase tracking-wider text-right">Starting From</div>
+                    </div>
+                    <div class="pricing-row grid grid-cols-2 px-8 py-6 border-b border-slate-100">
+                        <div class="text-base font-medium text-[#0D212C]">Landing Page</div>
+                        <div class="text-base text-slate-700 text-right">RM500</div>
+                    </div>
+                    <div class="pricing-row grid grid-cols-2 px-8 py-6 border-b border-slate-100">
+                        <div class="text-base font-medium text-[#0D212C]">Portfolio Website</div>
+                        <div class="text-base text-slate-700 text-right">RM1,000</div>
+                    </div>
+                    <div class="pricing-row grid grid-cols-2 px-8 py-6 border-b border-slate-100">
+                        <div class="text-base font-medium text-[#0D212C]">Business Website</div>
+                        <div class="text-base text-slate-700 text-right">RM1,500</div>
+                    </div>
+                    <div class="pricing-row grid grid-cols-2 px-8 py-6 border-b border-slate-100">
+                        <div class="text-base font-medium text-[#0D212C]">Premium Website</div>
+                        <div class="text-base text-slate-700 text-right">RM3,500</div>
+                    </div>
+                    <div class="pricing-row grid grid-cols-2 px-8 py-6">
+                        <div class="text-base font-medium text-[#0D212C]">Custom Web Platform</div>
+                        <div class="text-base text-slate-700 text-right">RM8,000+</div>
+                    </div>
+                </div>
+
+                <p class="text-sm text-slate-500 mt-6 leading-relaxed">
+                    Every project is quoted individually based on scope, timeline, and requirements.
+                </p>
+            </div>
+        </section>
+    </div>
 
     <footer class="w-full px-6 pt-24 pb-8 bg-white border-t border-slate-100" id="site-footer">
         <div class="max-w-7xl mx-auto">
@@ -781,13 +1332,14 @@
                 <div class="flex gap-16 md:gap-24">
                     <div class="flex flex-col gap-3">
                         <button onclick="scrollToBooking()" class="text-base text-left bg-transparent border-0 cursor-pointer text-[#051A24] hover:opacity-70 transition-opacity">Services</button>
-                        <a href="#projects-section" class="text-base text-[#051A24] hover:opacity-70 transition-opacity">Work</a>
+                        <a href="#projects-section" onclick="navigateTo('home')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity">Work</a>
                         <a href="https://luviio.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1 no-underline">Template<i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i></a>
                         <button onclick="document.getElementById('parallax-section').scrollIntoView({behavior: 'smooth'})" class="text-base text-left bg-transparent border-0 cursor-pointer text-[#051A24] hover:opacity-70 transition-opacity">About</button>
+                        <a href="#/partnership" onclick="event.preventDefault(); navigateTo('partnership')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Partnership</a>
                     </div>
                     <div class="flex flex-col gap-3">
                         <a href="#/terms" onclick="event.preventDefault(); navigateTo('terms')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Terms</a>
-                        <a href="#/policy" onclick="event.preventDefault(); navigateTo('policy')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Privacy Policy</a>
+                        <a href="#/privacy-policy" onclick="event.preventDefault(); navigateTo('privacy-policy')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Privacy Policy</a>
                         <a href="https://x.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1 no-underline">x.com <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i></a>
                         <a href="https://linkedin.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1 no-underline">LinkedIn <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i></a>
                     </div>
@@ -805,13 +1357,13 @@
 
     <!-- Bottom Nav -->
     <nav id="bottom-nav" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-white/90 backdrop-blur-xl rounded-full pl-3 pr-2 py-2 flex items-center justify-between gap-2 md:gap-4 shadow-[0px_10px_30px_rgba(0,0,0,0.08)] border border-slate-200/60 whitespace-nowrap max-w-[calc(100%-2rem)]">
-        <a href="#" onclick="event.preventDefault(); window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-2 no-underline" aria-label="Back to top">
+        <a href="#" onclick="event.preventDefault(); navigateTo('home'); window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-2 no-underline" aria-label="Back to top">
             <img src="https://images.luviio.com/luviio-crop-img.png" alt="Luviio Studio" class="w-9 h-9 rounded-full object-cover">
         </a>
         
         <div class="flex items-center gap-4 md:gap-6 font-medium text-sm md:text-[15px] text-slate-800">
-            <a href="#projects-section" class="hover:text-black transition-colors no-underline">Work</a>
-            <a href="#pricing-section" class="hover:text-black transition-colors no-underline">Pricing</a>
+            <a href="#projects-section" onclick="navigateTo('home')" class="hover:text-black transition-colors no-underline">Work</a>
+            <a href="#pricing-section" onclick="navigateTo('home')" class="hover:text-black transition-colors no-underline">Pricing</a>
         </div>
         
         <button onclick="scrollToBooking()" class="bg-[#2563EB] text-white rounded-full px-4 md:px-5 py-2 text-xs md:text-sm font-medium shadow-blue-btn hover:bg-blue-700 cursor-pointer transition-all">Book a call</button>
@@ -820,6 +1372,75 @@
     <script>
         // Initialize Icons
         lucide.createIcons();
+
+        // ==========================================
+        // ROUTER LOGIC
+        // ==========================================
+        function navigateTo(page) {
+            const routes = {
+                'home': '',
+                'terms': '#/terms',
+                'privacy-policy': '#/privacy-policy',
+                'partnership': '#/partnership'
+            };
+            
+            const hash = routes[page] || '';
+            window.location.hash = hash;
+            handleRouteChange();
+            
+            // Scroll to top for new pages
+            if (page !== 'home') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function handleRouteChange() {
+            const hash = window.location.hash;
+            const homePage = document.getElementById('home-page');
+            const termsPage = document.getElementById('terms-page');
+            const privacyPage = document.getElementById('privacy-policy-page');
+            const partnershipPage = document.getElementById('partnership-page');
+            const bottomNav = document.getElementById('bottom-nav');
+
+            // Hide all route pages
+            termsPage.classList.remove('active');
+            privacyPage.classList.remove('active');
+            partnershipPage.classList.remove('active');
+            
+            if (hash === '#/terms') {
+                homePage.classList.add('inactive');
+                termsPage.classList.add('active');
+                bottomNav.classList.add('nav-hidden');
+            } else if (hash === '#/privacy-policy') {
+                homePage.classList.add('inactive');
+                privacyPage.classList.add('active');
+                bottomNav.classList.add('nav-hidden');
+            } else if (hash === '#/partnership') {
+                homePage.classList.add('inactive');
+                partnershipPage.classList.add('active');
+                bottomNav.classList.add('nav-hidden');
+            } else {
+                homePage.classList.remove('inactive');
+                bottomNav.classList.remove('nav-hidden');
+            }
+            
+            // Re-initialize icons for newly visible content
+            lucide.createIcons();
+        }
+
+        // Listen for hash changes (back/forward navigation)
+        window.addEventListener('hashchange', handleRouteChange);
+
+        // Handle initial route on page load
+        handleRouteChange();
+
+        // Scroll to booking from route pages
+        function scrollToBookingFromRoute() {
+            navigateTo('home');
+            setTimeout(() => {
+                scrollToBooking();
+            }, 600);
+        }
 
         // Populate Stars
         const starContainer = document.getElementById('stars-container');
@@ -844,9 +1465,9 @@
         const bottomNav = document.getElementById('bottom-nav');
         const footerObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
+                if (entry.isIntersecting && !document.getElementById('home-page').classList.contains('inactive')) {
                     bottomNav.classList.add('nav-hidden');
-                } else {
+                } else if (!document.getElementById('home-page').classList.contains('inactive')) {
                     bottomNav.classList.remove('nav-hidden');
                 }
             });
@@ -873,54 +1494,70 @@
             name.addEventListener('mousemove', (e) => { 
                 requestAnimationFrame(() => {
                     teamHoverImg.style.left = `${e.clientX+20}px`; 
-                    teamHoverImg.style.top = `${e.clientY-180}px`; // Adjusted Y offset for taller portrait image
+                    teamHoverImg.style.top = `${e.clientY-180}px`;
                 });
             });
             name.addEventListener('mouseleave', () => { teamHoverImg.classList.remove('active'); });
         });
 
-        // Testimonials Carousel
+        // ==========================================
+        // TESTIMONIALS - REDESIGNED EDITORIAL LAYOUT
+        // ==========================================
         const testimonials = [
-            { name: "Marcus Anderson", role: "CEO", company: "Data.storage", quote: "With very little guidance team delivered designs that were consistently spot on...", avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150" },
-            { name: "alexwu", role: "Founder", company: "Nexgate", quote: "Danial led the creation of our best fundraising deck to date!...", avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150" },
-            { name: "James Mitchell", role: "VP Product", company: "LaunchPad", quote: "Working with Danial transformed our product vision...", avatar: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=150" },
-            { name: "Rachel Foster", role: "Co-founder", company: "Nexus Labs", quote: "The design quality exceeded our expectations...", avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150" },
-            { name: "David Zhang", role: "Head of Design", company: "Paradigm Labs", quote: "Incredible work from start to finish...", avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150" }
+            { name: "Marcus Anderson", role: "CEO", company: "Data.storage", quote: "With very little guidance team delivered designs that were consistently spot on. They understood our vision immediately and translated it into something better than we imagined.", avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150" },
+            { name: "alexwu", role: "Founder", company: "Nexgate", quote: "Danial led the creation of our best fundraising deck to date! The clarity, narrative, and design elevated our entire pitch.", avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150" },
+            { name: "James Mitchell", role: "VP Product", company: "LaunchPad", quote: "Working with Danial transformed our product vision into something tangible, beautiful, and ready to ship.", avatar: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=150" },
+            { name: "Rachel Foster", role: "Co-founder", company: "Nexus Labs", quote: "The design quality exceeded our expectations on every single deliverable. Worth every penny.", avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150" },
+            { name: "David Zhang", role: "Head of Design", company: "Paradigm Labs", quote: "Incredible work from start to finish. The attention to detail and craft is genuinely world-class.", avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150" }
         ];
-        const carouselList = [...testimonials, ...testimonials, ...testimonials];
-        const carouselTrack = document.getElementById('carousel-track');
-        let cardWidthDesktop = 427.5; const gapWidth = 24;
-        let currentIndex = testimonials.length; let isTransitioning = true; let autoplayTimer;
 
-        function buildCarousel() {
-            if (!carouselTrack) return;
-            carouselTrack.innerHTML = '';
-            carouselList.forEach((item) => {
-                const card = document.createElement('div');
-                card.setAttribute('role', 'listitem');
-                card.className = "bg-white border border-slate-50 rounded-[32px] md:rounded-[40px] shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-6 md:pl-10 md:pr-24 py-8 shrink-0 flex flex-col justify-between h-[260px] select-none transition-transform duration-300 hover:scale-[0.99]";
-                card.style.width = window.innerWidth < 768 ? 'calc(100vw - 48px)' : `${cardWidthDesktop}px`;
-                card.innerHTML = `<div><svg class="w-8 h-8 text-[#0D212C]/10 mb-3 fill-current" viewBox="0 0 32 32"><path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2h2V8h-2zm14 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2h2V8h-2z" /></svg><p class="text-base text-[#0D212C] leading-relaxed line-clamp-3 tracking-tight">"${item.quote}"</p></div><div class="flex items-center gap-4 mt-4"><img src="${item.avatar}" alt="${item.name}" class="w-12 h-12 rounded-full object-cover"><div><h4 class="font-semibold text-sm text-[#0D212C]">${item.name}</h4><p class="text-xs text-[#273C46] flex items-center gap-1 mt-0.5"><span>→</span> ${item.role}, ${item.company}</p></div></div>`;
-                carouselTrack.appendChild(card);
-            });
-            updateCarouselPosition(false);
+        let testimonialIndex = 0;
+
+        function updateTestimonials() {
+            const featured = testimonials[testimonialIndex % testimonials.length];
+            const mini1 = testimonials[(testimonialIndex + 1) % testimonials.length];
+            const mini2 = testimonials[(testimonialIndex + 2) % testimonials.length];
+
+            // Featured
+            document.getElementById('featured-quote').textContent = featured.quote;
+            document.getElementById('featured-avatar').src = featured.avatar;
+            document.getElementById('featured-avatar').alt = featured.name;
+            document.getElementById('featured-name').textContent = featured.name;
+            document.getElementById('featured-role').textContent = `${featured.role}, ${featured.company}`;
+
+            // Mini 1
+            document.getElementById('mini-quote-1').textContent = `"${mini1.quote}"`;
+            document.getElementById('mini-avatar-1').src = mini1.avatar;
+            document.getElementById('mini-avatar-1').alt = mini1.name;
+            document.getElementById('mini-name-1').textContent = mini1.name;
+            document.getElementById('mini-role-1').textContent = `${mini1.role}, ${mini1.company}`;
+
+            // Mini 2
+            document.getElementById('mini-quote-2').textContent = `"${mini2.quote}"`;
+            document.getElementById('mini-avatar-2').src = mini2.avatar;
+            document.getElementById('mini-avatar-2').alt = mini2.name;
+            document.getElementById('mini-name-2').textContent = mini2.name;
+            document.getElementById('mini-role-2').textContent = `${mini2.role}, ${mini2.company}`;
         }
-        function updateCarouselPosition(animate = true) {
-            if (!carouselTrack) return;
-            const w = window.innerWidth < 768 ? (window.innerWidth - 48) : cardWidthDesktop;
-            carouselTrack.style.transition = animate ? 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
-            carouselTrack.style.transform = `translateX(-${currentIndex * (w + gapWidth)}px)`;
+
+        function nextSlide() {
+            testimonialIndex++;
+            updateTestimonials();
         }
-        // The rest of your carousel logic continues...
-        function nextSlide() { currentIndex++; updateCarouselPosition(); }
-        function prevSlide() { currentIndex--; updateCarouselPosition(); }
-        buildCarousel();
+
+        function prevSlide() {
+            testimonialIndex--;
+            if (testimonialIndex < 0) testimonialIndex = testimonials.length - 1;
+            updateTestimonials();
+        }
+
+        // Initial render
+        updateTestimonials();
 
         // ==========================================
         // BOOKING LOGIC & CLOUDFLARE/RESEND INTEGRATION
         // ==========================================
         
-        // REPLACE THIS with your actual deployed Cloudflare Worker URL
         const WORKER_URL = "https://luviio-booking.luviio.workers.dev/"; 
 
         let currentMonth = new Date().getMonth();
@@ -929,7 +1566,15 @@
         let selectedTime = null;
 
         function scrollToBooking() {
-            document.getElementById('native-booking-section').scrollIntoView({ behavior: 'smooth' });
+            // If we're on a route page, navigate home first
+            if (document.getElementById('home-page').classList.contains('inactive')) {
+                navigateTo('home');
+                setTimeout(() => {
+                    document.getElementById('native-booking-section').scrollIntoView({ behavior: 'smooth' });
+                }, 600);
+            } else {
+                document.getElementById('native-booking-section').scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         function renderCalendar() {
@@ -970,13 +1615,11 @@
         function selectDate(dateObj, event) {
             selectedDate = dateObj;
             
-            // Update calendar UI
             document.querySelectorAll('.cal-day-btn').forEach(b => b.classList.remove('selected'));
             if(event && event.target) event.target.classList.add('selected');
             
             document.getElementById('target-day-label').textContent = dateObj.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
             
-            // Generate dummy time slots
             const slots = ["09:00 AM", "10:30 AM", "01:00 PM", "03:30 PM", "05:00 PM", "06:00 PM"];
             const container = document.getElementById('time-slots-container');
             container.innerHTML = '';
@@ -991,7 +1634,6 @@
                 btn.className = 'time-slot-btn px-3 py-2.5 border border-slate-200 rounded-xl text-xs md:text-sm text-slate-700 hover:border-slate-900 hover:bg-slate-50 transition-all cursor-pointer font-medium';
                 btn.textContent = time;
                 
-                // Disable if time has already passed today
                 if (isToday) {
                     const slotTime = new Date(dateObj);
                     const hours = time.includes('PM') && !time.includes('12') ? parseInt(time.slice(0,2)) + 12 : parseInt(time.slice(0,2));
@@ -1020,13 +1662,11 @@
             document.getElementById('summary-date').textContent = selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
             document.getElementById('summary-time').textContent = time;
 
-            // Automatically show form
             setTimeout(() => {
                 showStepForm();
             }, 300);
         }
 
-        // Handle WhatsApp selection logic
         const meetingTypeSelect = document.getElementById('meeting-type-select');
         const phoneFieldContainer = document.getElementById('phone-field-container');
         
@@ -1055,7 +1695,6 @@
             document.getElementById('booking-step-slots').classList.remove('hidden');
         }
 
-        // Make sure we jump to step form if they have selected time and click anywhere on summary
         document.getElementById('booking-datetime-summary').addEventListener('click', showStepForm);
 
         async function submitBooking() {
@@ -1072,7 +1711,6 @@
                 return alert('Please fill in all required fields.');
             }
 
-            // If WhatsApp is selected, ensure phone number is provided
             if (meetingType === 'Whatsapp' && !phone) {
                 return alert('Please provide a phone number for WhatsApp contact.');
             }
@@ -1089,13 +1727,12 @@
                         name, email, business, help, source, meetingType, timezone,
                         date: selectedDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' }),
                         time: selectedTime,
-                        phone: phone || null // Send null if empty
+                        phone: phone || null
                     })
                 });
 
                 if (!response.ok) throw new Error('Network response was not ok');
                 
-                // Show Success State
                 document.getElementById('booking-step-form').classList.remove('visible-form');
                 document.getElementById('booking-step-form').classList.add('hidden-form');
                 document.getElementById('booking-step-success').classList.remove('hidden');
@@ -1120,20 +1757,12 @@
             document.getElementById('booking-email').value = '';
             document.getElementById('booking-business').value = '';
             document.getElementById('booking-help').value = '';
-            document.getElementById('booking-phone').value = ''; // Reset phone field
+            document.getElementById('booking-phone').value = '';
             if(document.querySelector('input[name="source"]:checked')) {
                 document.querySelector('input[name="source"]:checked').checked = false;
             }
             selectedDate = null;
             selectedTime = null;
-        }
-
-        // Overlay Navigation 
-        function navigateTo(page) {
-            document.getElementById(`${page}-overlay`).classList.add('active');
-        }
-        function closeOverlay() {
-            document.querySelectorAll('.page-overlay').forEach(el => el.classList.remove('active'));
         }
 
         // Initialize Calendar on Load
@@ -1147,7 +1776,6 @@
         const partnerHeading = document.getElementById('partner-heading');
         const partnerCta = document.getElementById('partner-cta');
 
-        // Create glow element
         const glow = document.createElement('div');
         glow.style.position = 'absolute';
         glow.style.width = '600px';
@@ -1183,7 +1811,6 @@
             mouseX = e.clientX - rect.left;
             mouseY = e.clientY - rect.top;
 
-            // Proximity effect for heading
             const headingRect = partnerHeading.getBoundingClientRect();
             const headingCenterX = headingRect.left + headingRect.width / 2;
             const headingCenterY = headingRect.top + headingRect.height / 2;
@@ -1195,15 +1822,12 @@
                 const pushX = (distX / distance) * -10;
                 const pushY = (distY / distance) * -10;
                 partnerHeading.style.transform = `translate(${pushX}px, ${pushY}px) scale(1.02)`;
-                
-                // Lift CTA slightly
                 partnerCta.style.transform = 'translateY(-4px) scale(1.02)';
             } else {
                 partnerHeading.style.transform = 'translateY(0) scale(1)';
                 partnerCta.style.transform = 'scale(1)';
             }
 
-            // Create trail occasionally
             if (Math.random() > 0.85) {
                 createTrail(mouseX, mouseY);
             }
@@ -1239,12 +1863,10 @@
             
             partnerCanvas.appendChild(img);
 
-            // Animate in
             requestAnimationFrame(() => {
                 img.classList.add('visible');
             });
 
-            // Animate out
             setTimeout(() => {
                 img.classList.remove('visible');
                 img.classList.add('fade-out');
